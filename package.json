@@ -1,0 +1,37 @@
+{
+  "name": "my-design",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "check": "vp check",
+    "build": "pnpm run check && pnpm test && vp build",
+    "preview": "vp preview",
+    "format": "vp fmt",
+    "format:check": "vp fmt --check",
+    "lint": "vp lint",
+    "test": "vp test --run",
+    "test:coverage": "vp test --run --coverage"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/lora": "5.3.0",
+    "lucide-react": "1.45.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.3",
+    "@types/node": "22.20.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "@vitest/coverage-v8": "4.1.11",
+    "jsdom": "26.1.0",
+    "typescript": "7.0.2",
+    "vite-plus": "0.3.1"
+  },
+  "packageManager": "pnpm@12.4.1"
+}

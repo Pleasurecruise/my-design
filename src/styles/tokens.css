@@ -1,0 +1,104 @@
+@import "./palette.css";
+
+:root {
+  --color-background: var(--palette-light-silver);
+  --color-muted: var(--palette-light-cloud);
+  --color-foreground: var(--palette-light-ink);
+  --color-muted-foreground: var(--palette-light-fog);
+  --color-border: var(--palette-light-edge);
+  --color-border-strong: var(--palette-light-outline);
+  --color-divider: var(--palette-light-edge);
+  --color-accent: var(--palette-blue-light);
+  --color-secondary: var(--palette-amber-light);
+  --color-subtle-accent: var(--palette-matcha-light);
+  --color-accent-foreground: var(--palette-light-silver);
+  --color-success: var(--palette-success-light);
+  --color-warning: var(--palette-warning-light);
+  --color-error: var(--palette-error-light);
+
+  --font-sans:
+    "Geist", "Inter", system-ui, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-serif: "Lora", "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", "Fira Code", Consolas, Monaco, monospace;
+
+  --text-display: 4.5rem;
+  --text-section: 1.875rem;
+  --text-heading: 1.25rem;
+  --text-body: 0.875rem;
+  --text-reading: 1.125rem;
+  --text-small: 0.8125rem;
+  --text-code: 0.8125rem;
+  --text-caption: 0.75rem;
+  --leading-display: 1.15;
+  --leading-heading: 1.35;
+  --leading-body: 1.6;
+  --leading-reading: 1.8;
+  --leading-small: 1.5;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-strong: 600;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 7px;
+  --radius-xl: 10px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px 0 color-mix(in srgb, #000 4%, transparent);
+  --shadow-sm:
+    0 1px 3px 0 color-mix(in srgb, #000 5%, transparent),
+    0 1px 2px -1px color-mix(in srgb, #000 5%, transparent);
+  --shadow-md:
+    0 4px 8px -2px color-mix(in srgb, #000 6%, transparent),
+    0 2px 4px -2px color-mix(in srgb, #000 4%, transparent);
+  --shadow-lg:
+    0 10px 20px -4px color-mix(in srgb, #000 8%, transparent),
+    0 4px 6px -4px color-mix(in srgb, #000 5%, transparent);
+
+  --duration-fast: 100ms;
+  --duration-base: 180ms;
+  --duration-slow: 320ms;
+}
+
+.dark {
+  --color-background: var(--palette-dark-0);
+  --color-muted: var(--palette-dark-1);
+  --color-foreground: var(--palette-dark-text);
+  --color-muted-foreground: var(--palette-dark-text-dim);
+  --color-border: var(--palette-dark-2);
+  --color-border-strong: var(--palette-dark-3);
+  --color-divider: var(--palette-dark-1);
+  --color-accent: var(--palette-blue-dark);
+  --color-secondary: var(--palette-amber-dark);
+  --color-subtle-accent: var(--palette-matcha-dark);
+  --color-accent-foreground: var(--palette-dark-0);
+  --color-success: var(--palette-success-dark);
+  --color-warning: var(--palette-warning-dark);
+  --color-error: var(--palette-error-dark);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --text-display: 2.75rem;
+    --text-section: 1.625rem;
+    --text-heading: 1.125rem;
+    --text-reading: 1.0625rem;
+  }
+}
+@media print {
+  :root,
+  :root.dark {
+    color-scheme: light;
+    --color-background: var(--palette-light-silver);
+    --color-muted: var(--palette-light-cloud);
+    --color-foreground: var(--palette-light-ink);
+    --color-muted-foreground: var(--palette-light-fog);
+    --color-border: var(--palette-light-edge);
+    --color-border-strong: var(--palette-light-outline);
+    --color-divider: var(--palette-light-edge);
+    --color-accent: var(--palette-blue-light);
+    --color-secondary: var(--palette-amber-light);
+    --color-subtle-accent: var(--palette-matcha-light);
+  }
+}

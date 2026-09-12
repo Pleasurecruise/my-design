@@ -1,0 +1,12 @@
+.idea
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+!.env.example
+
+.vite/
+.vite-plus/
+coverage/

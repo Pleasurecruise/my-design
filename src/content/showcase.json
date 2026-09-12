@@ -1,0 +1,735 @@
+{
+  "site": {
+    "name": "My Design",
+    "eyebrow": "At an unhurried pace",
+    "edition": "DESIGN SYSTEM / 02",
+    "title": "A little quiet.\nA mind of its own.",
+    "description": "A place for passing thoughts and things worth keeping. Silver light, a trace of matcha, and two small notes of blue and amber.",
+    "metadata": "My Design — a personal design system with silver light, ink-dark surfaces, matcha, blue and amber. Unhurried typography and light, icon-led interactions.",
+    "signature": "Less convention. More character.",
+    "footer": "Follow what catches your eye.",
+    "themeKey": "my-design:theme"
+  },
+  "labels": {
+    "skip": "Skip to content",
+    "theme": "Color mode",
+    "light": "Light",
+    "dark": "Dark",
+    "back": "Back to top",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Could not copy. Select the code to copy it manually.",
+    "preview": "Open specimen",
+    "close": "Close specimen",
+    "token": "Token",
+    "value": "Value",
+    "role": "Role",
+    "lightValue": "Light",
+    "darkValue": "Dark",
+    "sample": "Specimen",
+    "recommended": "Use",
+    "avoid": "Avoid",
+    "replay": "Replay motion",
+    "reduced": "Motion follows your reduced-motion preference.",
+    "switchLight": "Use light theme",
+    "switchDark": "Use dark theme"
+  },
+  "sections": [
+    {
+      "id": "specimens",
+      "label": "Specimens",
+      "title": "Small things. A shared identity.",
+      "description": "Three formats to try. Open a specimen and see how the system moves from a passing note to a longer thought."
+    },
+    {
+      "id": "principles",
+      "label": "Principles",
+      "title": "Leave room for instinct.",
+      "description": "A little structure, a little freedom. Let the useful things settle into place."
+    },
+    {
+      "id": "color",
+      "label": "Color",
+      "title": "Silver light. A trace of matcha.",
+      "description": "Soft neutrals leave space around the content. Blue and amber carry the contrast; a muted green brings a quieter note."
+    },
+    {
+      "id": "typography",
+      "label": "Typography",
+      "title": "A softer voice. A clear thought.",
+      "description": "Unhurried serif headings, clear interface text, and a steady monospace rhythm for the smaller details."
+    },
+    {
+      "id": "structure",
+      "label": "Space & shape",
+      "title": "Enough space to settle.",
+      "description": "Generous margins, restrained corners, almost-flat surfaces. Hierarchy starts with distance."
+    },
+    {
+      "id": "motion",
+      "label": "Motion",
+      "title": "A response, not a performance.",
+      "description": "Fast feedback for small actions. A little more time when a surface enters or leaves."
+    },
+    {
+      "id": "components",
+      "label": "Components",
+      "title": "Quiet, until you need them.",
+      "description": "Small, familiar icons keep actions light. Focus, hints and written feedback make their meaning clear."
+    },
+    {
+      "id": "usage",
+      "label": "Usage",
+      "title": "The same language, everywhere.",
+      "description": "Use roles rather than raw values. Surfaces, text and interactions then move together between modes."
+    },
+    {
+      "id": "decisions",
+      "label": "Decisions",
+      "title": "Make the next choice easier.",
+      "description": "A short reference for the decisions that come up again and again."
+    }
+  ],
+  "principles": [
+    {
+      "title": "Quiet surfaces.",
+      "text": "Silver-white and soft ink carry the page. Use borders and tonal changes before adding depth."
+    },
+    {
+      "title": "A small trace of color.",
+      "text": "Blue marks primary actions and focus. Amber and matcha remain occasional details, never competing backgrounds."
+    },
+    {
+      "title": "Three voices.",
+      "text": "Serif for reflective headings, sans for everyday reading, mono for values. Keep each role consistent."
+    },
+    {
+      "title": "Space follows meaning.",
+      "text": "Keep related content close. Separate new thoughts with space, without wrapping every idea in a card."
+    },
+    {
+      "title": "Character in the margins.",
+      "text": "A feline mark or an unexpected pause is enough. Let the content stay at the center."
+    },
+    {
+      "title": "Roles before values.",
+      "text": "Choose semantic tokens for text, surfaces and borders. Both themes inherit the same component structure."
+    },
+    {
+      "title": "An action must be clear.",
+      "text": "Give icons readable names, visible keyboard focus and room to tap. Explain outcomes in text."
+    },
+    {
+      "title": "Motion stays optional.",
+      "text": "Animate feedback briefly. Respect reduced motion and keep every state understandable without movement."
+    }
+  ],
+  "colors": [
+    {
+      "token": "--color-background",
+      "name": "Silver white / Soft ink",
+      "role": "The page",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-muted",
+      "name": "Tea mist / Charcoal",
+      "role": "Quiet surfaces",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-border",
+      "name": "Soft edge",
+      "role": "Borders and outlines",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-border-strong",
+      "name": "Defined edge",
+      "role": "Active boundaries",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-muted-foreground",
+      "name": "Quiet text",
+      "role": "Captions and metadata",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-foreground",
+      "name": "Ink / Silver white",
+      "role": "Body and headings",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-accent",
+      "name": "Slate blue",
+      "role": "Actions, links and focus",
+      "group": "accent"
+    },
+    {
+      "token": "--color-accent-foreground",
+      "name": "On accent",
+      "role": "Text on accent surfaces",
+      "group": "accent"
+    },
+    {
+      "token": "--color-success",
+      "name": "Sage",
+      "role": "Positive confirmation",
+      "group": "state"
+    },
+    {
+      "token": "--color-warning",
+      "name": "Ochre",
+      "role": "Something to review",
+      "group": "state"
+    },
+    {
+      "token": "--color-error",
+      "name": "Muted red",
+      "role": "An action needs attention",
+      "group": "state"
+    },
+    {
+      "token": "--color-secondary",
+      "name": "Amber",
+      "role": "Secondary emphasis",
+      "group": "accent"
+    },
+    {
+      "token": "--color-subtle-accent",
+      "name": "Matcha",
+      "role": "Quiet identity details",
+      "group": "accent"
+    }
+  ],
+  "accent": {
+    "title": "Two eyes. One quiet green.",
+    "subtitle": "The character of the palette",
+    "text": "A silver-white foundation and soft ink recall a monochrome silhouette. Muted blue and amber keep their individual character. Matcha appears sparingly, like a small personal preference in an otherwise quiet room.",
+    "note": "These colors are an interpretation for this system. Large samples are for inspection; actual interfaces keep chromatic emphasis compact."
+  },
+  "colorTable": [
+    {
+      "token": "--color-background",
+      "role": "Page surface"
+    },
+    {
+      "token": "--color-muted",
+      "role": "Muted or elevated surface"
+    },
+    {
+      "token": "--color-foreground",
+      "role": "Default text"
+    },
+    {
+      "token": "--color-muted-foreground",
+      "role": "Secondary text"
+    },
+    {
+      "token": "--color-border",
+      "role": "Outline"
+    },
+    {
+      "token": "--color-border-strong",
+      "role": "Active boundary"
+    },
+    {
+      "token": "--color-divider",
+      "role": "Soft separator"
+    },
+    {
+      "token": "--color-accent",
+      "role": "Action, link, focus"
+    },
+    {
+      "token": "--color-accent-foreground",
+      "role": "Text on accent"
+    },
+    {
+      "token": "--color-success",
+      "role": "Positive state"
+    },
+    {
+      "token": "--color-warning",
+      "role": "Caution state"
+    },
+    {
+      "token": "--color-error",
+      "role": "Error state"
+    },
+    {
+      "token": "--color-secondary",
+      "role": "Secondary emphasis"
+    },
+    {
+      "token": "--color-subtle-accent",
+      "role": "Low-emphasis identity accent"
+    }
+  ],
+  "typography": [
+    {
+      "token": "--font-sans",
+      "name": "Geist",
+      "kind": "sans",
+      "role": "Interface & body",
+      "sample": "Only what needs to be said.",
+      "detail": "The leading voice: clean, compact and confident. Regular body text; medium and semibold for hierarchy."
+    },
+    {
+      "token": "--font-serif",
+      "name": "Lora",
+      "kind": "serif",
+      "role": "Headings, prose & pull quotes",
+      "sample": "Stay a little. Then follow your curiosity.",
+      "detail": "Airy headings, a longer thought, a passage saved for later. Let the letterforms and the space around them carry the expression."
+    },
+    {
+      "token": "--font-mono",
+      "name": "Geist Mono",
+      "kind": "mono",
+      "role": "Code & numerics",
+      "sample": "Aa 0123456789 { }",
+      "detail": "A steady rhythm for values, dates and implementation details."
+    }
+  ],
+  "weights": [
+    {
+      "value": 400,
+      "label": "Body"
+    },
+    {
+      "value": 500,
+      "label": "Emphasis"
+    },
+    {
+      "value": 600,
+      "label": "Headings"
+    }
+  ],
+  "radii": [
+    {
+      "token": "--radius-xs",
+      "label": "Inline tags"
+    },
+    {
+      "token": "--radius-sm",
+      "label": "Compact controls"
+    },
+    {
+      "token": "--radius-md",
+      "label": "Buttons & inputs"
+    },
+    {
+      "token": "--radius-lg",
+      "label": "Cards & panels"
+    },
+    {
+      "token": "--radius-xl",
+      "label": "Dialogs"
+    },
+    {
+      "token": "--radius-full",
+      "label": "Pill badges"
+    }
+  ],
+  "shadows": [
+    {
+      "token": "--shadow-xs",
+      "label": "Input"
+    },
+    {
+      "token": "--shadow-sm",
+      "label": "Card"
+    },
+    {
+      "token": "--shadow-md",
+      "label": "Popover"
+    },
+    {
+      "token": "--shadow-lg",
+      "label": "Dialog"
+    }
+  ],
+  "structure": {
+    "spacingTitle": "Let proximity do the grouping.",
+    "spacingText": "Keep a label near its value, related controls together, and a generous pause between sections. These are layout examples, not an additional spacing-token scale.",
+    "compact": "Within a group",
+    "comfortable": "Between groups",
+    "generous": "Between sections",
+    "radiusTitle": "A softened edge",
+    "shadowTitle": "Depth, barely there"
+  },
+  "motion": [
+    {
+      "token": "--duration-fast",
+      "label": "A small response",
+      "description": "Toggles and micro interactions"
+    },
+    {
+      "token": "--duration-base",
+      "label": "The everyday transition",
+      "description": "Default interface feedback"
+    },
+    {
+      "token": "--duration-slow",
+      "label": "A change of scene",
+      "description": "Reveals and complex transitions"
+    }
+  ],
+  "motionNote": "Ease out on entrance. Ease in on exit. Avoid linear movement. Theme switches happen without intermediate color transitions.",
+  "components": {
+    "buttons": "Small gestures",
+    "save": "Save note",
+    "saved": "Saved",
+    "reset": "Reset",
+    "disabled": "Unavailable",
+    "savedMessage": "Note saved for this preview.",
+    "idleMessage": "Hover or focus an icon to see its action. Save a note to try the selected state.",
+    "fields": "A considered input",
+    "inputLabel": "Collection name",
+    "placeholder": "e.g. Small observations",
+    "hint": "A short name makes a collection easier to find.",
+    "submit": "Create collection",
+    "empty": "Enter a collection name to continue.",
+    "created": "Collection created for this preview:",
+    "states": "Status, in words",
+    "success": "Saved successfully",
+    "warning": "Review before publishing",
+    "error": "A required field is missing",
+    "preferences": "A simple preference",
+    "switchLabel": "Reading mode",
+    "switchHint": "Give the sample below a little more breathing room.",
+    "readingSample": "A small observation can be enough. Write it down, give it space, and return when there is more to say."
+  },
+  "samples": [
+    {
+      "id": "note",
+      "kind": "note",
+      "title": "A passing thought",
+      "subtitle": "Memo / a moment worth keeping",
+      "kicker": "OFF THE RECORD / 014",
+      "heading": "An unscheduled afternoon.",
+      "paragraphs": [
+        "A cup of matcha, a guitar resting nearby, and an afternoon with nowhere in particular to go.",
+        "Something interesting will turn up. It usually does."
+      ],
+      "meta": "September 12 · 2 min",
+      "tags": ["Field notes", "Unplanned"]
+    },
+    {
+      "id": "essay",
+      "kind": "essay",
+      "title": "Room for a longer read",
+      "subtitle": "Essay / a slower rhythm",
+      "kicker": "SIDE B / READING",
+      "heading": "A rhythm of your own.",
+      "paragraphs": [
+        "Some days begin with a plan. Others begin with a sound from the next room, or a turn down a street you have never taken.",
+        "A useful system makes space for both. It gives the familiar things a place, then leaves enough room for an unexpected one.",
+        "The point is not to remove every irregularity. It is to decide which ones make the work feel like yours."
+      ],
+      "meta": "Reading notes · 4 min",
+      "tags": ["Process", "Attention"]
+    },
+    {
+      "id": "collection",
+      "kind": "collection",
+      "title": "Things to return to",
+      "subtitle": "Collection / familiar order",
+      "kicker": "PERSONAL LIBRARY",
+      "heading": "Small observations",
+      "paragraphs": ["A few fragments from the everyday."],
+      "meta": "3 notes · Recently updated",
+      "tags": ["A sound from the next room", "A phrase between two chords", "The long way home"]
+    }
+  ],
+  "usage": {
+    "title": "Start with the shared styles",
+    "importCode": "@import \"./styles/tokens.css\";",
+    "exampleTitle": "A surface that follows the theme",
+    "exampleCode": ".card {\n  background: var(--color-muted);\n  color: var(--color-foreground);\n  border: 1px solid var(--color-border);\n  border-radius: var(--radius-lg);\n  box-shadow: var(--shadow-sm);\n  font-family: var(--font-sans);\n}\n\n.card:focus-visible {\n  outline: 2px solid var(--color-accent);\n  outline-offset: 2px;\n}",
+    "themeTitle": "Switch the whole system",
+    "themeText": "The dark class on the root element selects the dark palette. Read the saved preference before first paint, fall back to the system preference, and suppress transitions while changing modes.",
+    "boundaries": "Application components use semantic tokens. Standalone images, canvas documents and official brand artwork may define explicit colors within their own rendering boundary.",
+    "filename": "card.css",
+    "language": "CSS",
+    "highlightLines": [2, 3, 4]
+  },
+  "decisions": [
+    {
+      "task": "A secondary caption",
+      "use": "Muted foreground, regular weight",
+      "avoid": "Lowering the opacity of an entire content block"
+    },
+    {
+      "task": "An important action",
+      "use": "Accent with accent foreground",
+      "avoid": "Giving primary and secondary actions equal emphasis"
+    },
+    {
+      "task": "A new panel",
+      "use": "Muted surface, a fine border, a small radius",
+      "avoid": "Heavy shadows or oversized rounded corners"
+    },
+    {
+      "task": "An error",
+      "use": "Error color and a clear text explanation",
+      "avoid": "Color as the only indication of state"
+    },
+    {
+      "task": "A stronger heading",
+      "use": "Size, spacing and a maximum weight of 600",
+      "avoid": "Heavy or synthetic bold"
+    },
+    {
+      "task": "An avatar without an image",
+      "use": "A meaningful name or role as its fallback",
+      "avoid": "A question mark with no identity context"
+    },
+    {
+      "task": "A new color",
+      "use": "A named palette value mapped to a semantic role",
+      "avoid": "A one-off hex value inside a component"
+    },
+    {
+      "task": "A familiar action",
+      "use": "A recognizable icon, an accessible name and a focus hint",
+      "avoid": "An unexplained symbol or a missing action label"
+    }
+  ],
+  "themeOverview": [
+    {
+      "label": "Primary",
+      "kind": "color",
+      "token": "--color-accent",
+      "detail": "Slate blue",
+      "tokens": []
+    },
+    {
+      "label": "Neutrals",
+      "kind": "neutral",
+      "token": "",
+      "detail": "Silver to soft ink · green-tinted grays",
+      "tokens": [
+        "--color-background",
+        "--color-muted",
+        "--color-border",
+        "--color-border-strong",
+        "--color-muted-foreground",
+        "--color-foreground"
+      ]
+    },
+    {
+      "label": "Sans",
+      "kind": "font",
+      "token": "--font-sans",
+      "detail": "Interface & everyday text",
+      "tokens": []
+    },
+    {
+      "label": "Serif",
+      "kind": "font",
+      "token": "--font-serif",
+      "detail": "CJK fallback: Songti SC / Noto Serif SC",
+      "tokens": []
+    },
+    {
+      "label": "Mono",
+      "kind": "font",
+      "token": "--font-mono",
+      "detail": "Fallback: JetBrains Mono",
+      "tokens": []
+    }
+  ],
+  "typeScale": {
+    "title": "A scale for everyday use",
+    "columns": ["Role", "Current size", "Line height"],
+    "rows": [
+      {
+        "label": "Display",
+        "size": "--text-display",
+        "line": "--leading-display"
+      },
+      {
+        "label": "Section heading",
+        "size": "--text-section",
+        "line": "--leading-heading"
+      },
+      {
+        "label": "Card heading",
+        "size": "--text-heading",
+        "line": "--leading-heading"
+      },
+      {
+        "label": "Interface text",
+        "size": "--text-body",
+        "line": "--leading-body"
+      },
+      {
+        "label": "Long-form reading",
+        "size": "--text-reading",
+        "line": "--leading-reading"
+      },
+      {
+        "label": "Supporting text",
+        "size": "--text-small",
+        "line": "--leading-small"
+      },
+      {
+        "label": "Code",
+        "size": "--text-code",
+        "line": "--leading-body"
+      },
+      {
+        "label": "Caption",
+        "size": "--text-caption",
+        "line": "--leading-small"
+      }
+    ]
+  },
+  "comparison": {
+    "title": "One thought, two rhythms",
+    "description": "The same content in two settings. A leaves room for reading; B brings related details closer together. Both share the same theme.",
+    "both": "Compare both layouts",
+    "reading": "Show reading layout",
+    "everyday": "Show everyday layout",
+    "variants": [
+      {
+        "id": "reading",
+        "label": "A / Reading",
+        "description": "Serif prose · generous spacing"
+      },
+      {
+        "id": "everyday",
+        "label": "B / Everyday",
+        "description": "Sans prose · compact spacing"
+      }
+    ],
+    "kicker": "FIELD NOTES / 014",
+    "heading": "A quiet corner, a wandering thought.",
+    "paragraphs": [
+      "An open window, a guitar within reach, and a thought that has not quite found its words. Some afternoons are better left unplanned.",
+      "Give the idea a place to rest. Return when there is something more to say."
+    ],
+    "quote": "Leave a little space for the unexpected.",
+    "meta": "September 12 · 2 min read"
+  },
+  "interactions": {
+    "summary": "Forms, replies and overlays",
+    "intro": "Local examples. Nothing is sent or stored outside this page.",
+    "formTitle": "Leave a thought",
+    "fields": [
+      {
+        "id": "name",
+        "label": "Name",
+        "placeholder": "Your name"
+      },
+      {
+        "id": "email",
+        "label": "Email",
+        "placeholder": "you@example.com"
+      },
+      {
+        "id": "message",
+        "label": "Message",
+        "placeholder": "What caught your attention?"
+      }
+    ],
+    "required": "Please complete this field.",
+    "invalidEmail": "Enter a valid email address.",
+    "submit": "Post comment",
+    "pending": "Posting your thought…",
+    "success": "Your thought was added to this local thread.",
+    "threadTitle": "A small conversation",
+    "reply": "Reply",
+    "replying": "Replying to",
+    "cancelReply": "Cancel reply",
+    "author": "Author",
+    "you": "Just now",
+    "comments": [
+      {
+        "id": "first",
+        "name": "Mira",
+        "body": "The space between the lines makes this feel like a place to stay.",
+        "meta": "2 hours ago",
+        "replyTo": "",
+        "author": false
+      },
+      {
+        "id": "second",
+        "name": "Ren",
+        "body": "That was the idea. Leave enough room for the next thought.",
+        "meta": "1 hour ago",
+        "replyTo": "Mira",
+        "author": true
+      }
+    ],
+    "delete": "Delete the latest comment",
+    "deleteTitle": "Remove this comment?",
+    "deleteDescription": "This only removes the latest comment from the local example.",
+    "cancel": "Keep comment",
+    "confirm": "Remove comment",
+    "removed": "The comment was removed from this example.",
+    "share": "Open share sheet",
+    "shareTitle": "Keep this thought",
+    "shareDescription": "Copy a link to the guide or save this conversation as Markdown.",
+    "copyLink": "Copy guide link",
+    "download": "Download Markdown",
+    "copied": "Guide link copied.",
+    "copyError": "Could not copy. Use the address shown below.",
+    "close": "Close panel"
+  },
+  "stateDemo": {
+    "title": "Content at the edges",
+    "description": "Inspect the same small surface in each state.",
+    "states": [
+      {
+        "id": "ready",
+        "label": "Show content"
+      },
+      {
+        "id": "loading",
+        "label": "Show loading state"
+      },
+      {
+        "id": "empty",
+        "label": "Show empty state"
+      },
+      {
+        "id": "error",
+        "label": "Show error state"
+      },
+      {
+        "id": "long",
+        "label": "Show long title"
+      }
+    ],
+    "ready": "A place for small observations.",
+    "loading": "Loading observations…",
+    "empty": "No observations yet. A first thought is enough.",
+    "error": "The observations could not be loaded.",
+    "long": "A small observation about taking the long way home and finding something unexpectedly familiar in a place you have never visited before",
+    "retry": "Retry loading",
+    "recovered": "Observations loaded.",
+    "meta": "FIELD NOTE / 014"
+  },
+  "toolbar": {
+    "label": "Showcase controls",
+    "language": "Language: English",
+    "locale": "EN",
+    "accessibility": "Accessibility preferences",
+    "description": "Adjust this page to suit the way you read.",
+    "largerText": "Larger text",
+    "strongFocus": "Stronger keyboard focus",
+    "reduceMotion": "Reduce motion",
+    "motionNote": "Your system’s reduced-motion preference is always respected.",
+    "close": "Close accessibility preferences",
+    "switchLanguage": "Switch to Chinese"
+  },
+  "themeDefinition": {
+    "neutralScale": "roles · surface / edge / text",
+    "supporting": "Amber and matcha are supporting accents. Values follow the active theme."
+  }
+}

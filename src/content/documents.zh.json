@@ -1,0 +1,271 @@
+{
+  "labels": {
+    "title": "文档样张",
+    "description": "打开完整样张，可通过浏览器打印或保存为 PDF。",
+    "open": "打开文档",
+    "print": "打印或保存 PDF",
+    "back": "返回指南",
+    "sample": "虚构示例"
+  },
+  "documents": [
+    {
+      "id": "essay",
+      "label": "长文样张",
+      "title": "为下一个念头留白",
+      "subtitle": "关于注意力、有用的约束，以及平凡一天的形状。",
+      "meta": "日常笔记 / 014 · 阅读约 6 分钟",
+      "metrics": [],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "想法很少以预期的模样到来。它可能是散步时偶然听到的一句话、笔记本里的一行字，或等水烧开时弹出的一个和弦。首先要紧的，是有个地方把它放下。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "有用的页面让第一步变得轻松。标题为念头命名，舒适的行宽让下一句话更容易阅读，段落之间的空白允许读者停一停。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "一个起点",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "空白的页面，与留有余地的页面，并不相同。前者可能像一道产出任务，后者则像邀请你留意已经存在的事物。",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "留足空间，让想法可以改变主意。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "界面也是如此。输入框可以索要答案，也可以轻声解释什么信息有帮助。按钮可以争夺注意，也可以等待读者准备好。细小的决定积累成一个地方的气质。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "一些有用的约束",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "为每种颜色明确用途。",
+            "保持舒适的阅读行宽。",
+            "让下一步操作容易辨认。",
+            "用停顿分开相邻的想法。"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "约束让持续工作变得容易。基础决定已经做好，每一页就不必重新发明视觉语言。随记与文章可以有共同的气质，同时保持各自的节奏。",
+          "items": []
+        },
+        {
+          "kind": "code",
+          "text": "article {\n  max-width: 65ch;\n  font-family: var(--font-serif);\n  line-height: var(--leading-reading);\n}",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "回到页面",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "过些时候，笔记会以另一种方式变得有用。日期标记时间，短标签连接另一个想法，引语带回最初值得保存的声音。这些细节应随时可见，却不打断阅读。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "有些记录停留在片段，有些长成文章。系统应该容纳两者。一个小观察，不必先成为长文才值得安放。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "这就是个人设计系统的意义：让人更容易认出哪些东西属于一起。页面可以稳定，创作仍然开放。",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "熟悉的框架，意外的内容。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "当下一个念头到来，已经有地方可以安放。其余的事，按自己的节奏发生。",
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "resume",
+      "label": "单页简历",
+      "title": "Ren Mori",
+      "subtitle": "设计师与前端开发者",
+      "meta": "虚构履历 · 欢迎合作",
+      "metrics": [],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "我设计细致的界面，也构建背后的系统，关注阅读体验、个人工具和无障碍交互。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "工作经历",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "独立设计师 · 2023 至今",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "设计并开发具有响应式阅读布局的个人发布工具。",
+            "为浅色与深色主题建立共享 token 和可复用组件。",
+            "参与交互设计、前端实现与无障碍优化。"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "产品设计师 · Small Studio · 2021–2023",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": ["简化小型知识平台的表单与导航。", "记录内容、反馈与键盘交互模式。"]
+        },
+        {
+          "kind": "heading",
+          "text": "代表作品",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Field Notes — 采用可复用排版系统的个人写作空间。",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Small Collections — 收藏片段、链接与观察的轻量资料库。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "技能",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "设计：交互、排版、原型、设计系统",
+            "开发：TypeScript、React、CSS、无障碍 HTML",
+            "实践：文档、代码审查、可用性测试"
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "联系方式",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "ren@example.com · 可按需提供作品集",
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "report",
+      "label": "单页报告",
+      "title": "更清晰的阅读体验",
+      "subtitle": "设计回顾 · 九月",
+      "meta": "项目记录 / 03 · 示例数据",
+      "metrics": [
+        {
+          "value": "3",
+          "label": "页面类型"
+        },
+        {
+          "value": "2",
+          "label": "色彩模式"
+        },
+        {
+          "value": "1",
+          "label": "共享系统"
+        }
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "目标",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "让随记、文章和收藏集保持一致气质，并为每种形式提供适合的阅读节奏。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "已完成",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "建立共享色彩与字体角色。",
+            "对照阅读排版与日常界面排版。",
+            "加入一致的图标操作和明确反馈。"
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "观察",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "最有用的改进，是更清晰的层级，而非更庞大的组件库。",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "下次检查",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "在窄屏检查长标题与空收藏集。",
+            "用键盘导航检查两种主题。",
+            "打印文档样张，检查分页。"
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "决定",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "保留共享色盘与组件形状。根据场景调整字号和间距，以阅读舒适度作为判断依据。",
+          "items": []
+        }
+      ]
+    }
+  ]
+}

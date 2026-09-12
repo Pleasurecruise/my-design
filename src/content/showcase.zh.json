@@ -1,0 +1,735 @@
+{
+  "site": {
+    "name": "My Design",
+    "eyebrow": "不疾不徐",
+    "edition": "设计系统 / 02",
+    "title": "安静一点。\n自有主张。",
+    "description": "收下偶然的念头，也留下值得珍藏的东西。银白的光、一点抹茶，以及蓝与琥珀的轻声回应。",
+    "metadata": "My Design — 以银白、墨色、抹茶绿、蓝与琥珀构成的个人设计系统。舒展的排版，轻巧的图标交互。",
+    "signature": "少一点惯例，多一点性格。",
+    "footer": "循着感兴趣的方向。",
+    "themeKey": "my-design:theme"
+  },
+  "labels": {
+    "skip": "跳至正文",
+    "theme": "色彩模式",
+    "light": "浅色",
+    "dark": "深色",
+    "back": "回到顶部",
+    "copy": "复制",
+    "copied": "已复制",
+    "copyFailed": "复制失败，请选中代码手动复制。",
+    "preview": "打开样例",
+    "close": "关闭样例",
+    "token": "Token",
+    "value": "数值",
+    "role": "用途",
+    "lightValue": "浅色",
+    "darkValue": "深色",
+    "sample": "样例",
+    "recommended": "建议",
+    "avoid": "避免",
+    "replay": "重播动效",
+    "reduced": "动效遵循你的减少动态效果偏好。",
+    "switchLight": "切换浅色主题",
+    "switchDark": "切换深色主题"
+  },
+  "sections": [
+    {
+      "id": "specimens",
+      "label": "样例",
+      "title": "小小日常，共同的气质。",
+      "description": "打开三种样例，看看同一套系统如何容纳随手记下的念头与长一些的思考。"
+    },
+    {
+      "id": "principles",
+      "label": "设计理念",
+      "title": "给直觉留些余地。",
+      "description": "一点秩序，一点自由。让有用的东西自然归位。"
+    },
+    {
+      "id": "color",
+      "label": "色彩",
+      "title": "银白的光，一点抹茶。",
+      "description": "柔和中性色为内容留白。蓝与琥珀带来对比，淡绿留下安静的注脚。"
+    },
+    {
+      "id": "typography",
+      "label": "字体排版",
+      "title": "轻一点的声音，清楚的思绪。",
+      "description": "舒展的衬线标题、清晰的界面文字，以及细节中稳定的等宽节奏。"
+    },
+    {
+      "id": "structure",
+      "label": "空间与形状",
+      "title": "留出安放的空间。",
+      "description": "宽松的边距、克制的圆角、近乎平面的表面。层级从距离开始。"
+    },
+    {
+      "id": "motion",
+      "label": "动效",
+      "title": "回应，而非表演。",
+      "description": "小动作及时反馈，表面进入或离开时稍慢一些。"
+    },
+    {
+      "id": "components",
+      "label": "组件",
+      "title": "安静，直到你需要。",
+      "description": "熟悉的小图标让操作保持轻巧。焦点、提示和文字反馈传达明确含义。"
+    },
+    {
+      "id": "usage",
+      "label": "使用",
+      "title": "在各处说同一种语言。",
+      "description": "按角色而非原始数值使用样式，让表面、文字和交互一起切换主题。"
+    },
+    {
+      "id": "decisions",
+      "label": "决策",
+      "title": "让下一次选择更容易。",
+      "description": "为反复出现的设计问题留一份简短参考。"
+    }
+  ],
+  "principles": [
+    {
+      "title": "安静的表面。",
+      "text": "银白与柔墨承载页面。先用边框和色阶区分层次，再考虑阴影。"
+    },
+    {
+      "title": "少量的色彩。",
+      "text": "蓝色标记主要操作与焦点。琥珀与抹茶偶尔出现，不争夺背景。"
+    },
+    {
+      "title": "三种声音。",
+      "text": "衬线用于沉静的标题，无衬线用于日常阅读，等宽用于数值。各司其职。"
+    },
+    {
+      "title": "空间跟随含义。",
+      "text": "相关内容靠近，新思绪之间留白，不必给每个想法套上卡片。"
+    },
+    {
+      "title": "性格留在边角。",
+      "text": "一个猫形标记，一次意外的停顿，就已足够。中心仍交给内容。"
+    },
+    {
+      "title": "角色先于数值。",
+      "text": "文字、表面和边框使用语义 token。两套主题共用相同的组件结构。"
+    },
+    {
+      "title": "操作必须清晰。",
+      "text": "图标需要可读名称、可见的键盘焦点与充足的点击区域。结果用文字说明。"
+    },
+    {
+      "title": "动效可以关闭。",
+      "text": "反馈动画保持简短。尊重减少动态效果偏好，静止时也能理解所有状态。"
+    }
+  ],
+  "colors": [
+    {
+      "token": "--color-background",
+      "name": "银白 / 柔墨",
+      "role": "页面底色",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-muted",
+      "name": "茶雾 / 炭色",
+      "role": "安静的表面",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-border",
+      "name": "柔和边缘",
+      "role": "边框与轮廓",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-border-strong",
+      "name": "清晰边缘",
+      "role": "活动边界",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-muted-foreground",
+      "name": "次要文字",
+      "role": "说明与元信息",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-foreground",
+      "name": "墨色 / 银白",
+      "role": "正文与标题",
+      "group": "neutral"
+    },
+    {
+      "token": "--color-accent",
+      "name": "石板蓝",
+      "role": "操作、链接与焦点",
+      "group": "accent"
+    },
+    {
+      "token": "--color-accent-foreground",
+      "name": "强调色上的文字",
+      "role": "强调色表面上的文字",
+      "group": "accent"
+    },
+    {
+      "token": "--color-success",
+      "name": "鼠尾草绿",
+      "role": "成功确认",
+      "group": "state"
+    },
+    {
+      "token": "--color-warning",
+      "name": "赭色",
+      "role": "需要检查",
+      "group": "state"
+    },
+    {
+      "token": "--color-error",
+      "name": "淡红",
+      "role": "需要注意的操作",
+      "group": "state"
+    },
+    {
+      "token": "--color-secondary",
+      "name": "琥珀",
+      "role": "次要强调",
+      "group": "accent"
+    },
+    {
+      "token": "--color-subtle-accent",
+      "name": "抹茶",
+      "role": "低调的个性细节",
+      "group": "accent"
+    }
+  ],
+  "accent": {
+    "title": "两种眼色，一抹安静的绿。",
+    "subtitle": "色盘的性格",
+    "text": "银白基底与柔墨勾出单色轮廓。低饱和的蓝与琥珀各有主张。抹茶只偶尔出现，像安静房间里的一点个人偏好。",
+    "note": "这些颜色是本系统的个人诠释。大色块用于检视，实际界面中的彩色强调应保持小范围。"
+  },
+  "colorTable": [
+    {
+      "token": "--color-background",
+      "role": "页面表面"
+    },
+    {
+      "token": "--color-muted",
+      "role": "弱化或抬升的表面"
+    },
+    {
+      "token": "--color-foreground",
+      "role": "默认文字"
+    },
+    {
+      "token": "--color-muted-foreground",
+      "role": "次要文字"
+    },
+    {
+      "token": "--color-border",
+      "role": "轮廓"
+    },
+    {
+      "token": "--color-border-strong",
+      "role": "活动边界"
+    },
+    {
+      "token": "--color-divider",
+      "role": "柔和分隔"
+    },
+    {
+      "token": "--color-accent",
+      "role": "操作、链接、焦点"
+    },
+    {
+      "token": "--color-accent-foreground",
+      "role": "强调色上的文字"
+    },
+    {
+      "token": "--color-success",
+      "role": "成功状态"
+    },
+    {
+      "token": "--color-warning",
+      "role": "警示状态"
+    },
+    {
+      "token": "--color-error",
+      "role": "错误状态"
+    },
+    {
+      "token": "--color-secondary",
+      "role": "次要强调"
+    },
+    {
+      "token": "--color-subtle-accent",
+      "role": "低强调的个性色"
+    }
+  ],
+  "typography": [
+    {
+      "token": "--font-sans",
+      "name": "Geist",
+      "kind": "sans",
+      "role": "界面与正文",
+      "sample": "只说需要说的话。",
+      "detail": "清晰、紧凑、从容的主声部。正文常规字重，中等与半粗字重建立层级。"
+    },
+    {
+      "token": "--font-serif",
+      "name": "Lora",
+      "kind": "serif",
+      "role": "标题、长文与引语",
+      "sample": "待一会儿，再跟着好奇心走。",
+      "detail": "轻盈的标题，长一点的思绪，为日后留存的段落。让字形与周围的空间共同表达。"
+    },
+    {
+      "token": "--font-mono",
+      "name": "Geist Mono",
+      "kind": "mono",
+      "role": "代码与数值",
+      "sample": "Aa 0123456789 { }",
+      "detail": "为数值、日期与实现细节提供稳定节奏。"
+    }
+  ],
+  "weights": [
+    {
+      "value": 400,
+      "label": "正文"
+    },
+    {
+      "value": 500,
+      "label": "强调"
+    },
+    {
+      "value": 600,
+      "label": "标题"
+    }
+  ],
+  "radii": [
+    {
+      "token": "--radius-xs",
+      "label": "行内标签"
+    },
+    {
+      "token": "--radius-sm",
+      "label": "紧凑控件"
+    },
+    {
+      "token": "--radius-md",
+      "label": "按钮与输入框"
+    },
+    {
+      "token": "--radius-lg",
+      "label": "卡片与面板"
+    },
+    {
+      "token": "--radius-xl",
+      "label": "对话框"
+    },
+    {
+      "token": "--radius-full",
+      "label": "胶囊标签"
+    }
+  ],
+  "shadows": [
+    {
+      "token": "--shadow-xs",
+      "label": "输入框"
+    },
+    {
+      "token": "--shadow-sm",
+      "label": "卡片"
+    },
+    {
+      "token": "--shadow-md",
+      "label": "浮层"
+    },
+    {
+      "token": "--shadow-lg",
+      "label": "对话框"
+    }
+  ],
+  "structure": {
+    "spacingTitle": "用距离表达分组。",
+    "spacingText": "标签靠近数值，相关控件放在一起，章节之间留出舒展的停顿。这是布局示例，不是额外的间距 token 标尺。",
+    "compact": "组内",
+    "comfortable": "组间",
+    "generous": "章节间",
+    "radiusTitle": "柔和的边缘",
+    "shadowTitle": "若有似无的深度"
+  },
+  "motion": [
+    {
+      "token": "--duration-fast",
+      "label": "小小回应",
+      "description": "开关与微交互"
+    },
+    {
+      "token": "--duration-base",
+      "label": "日常过渡",
+      "description": "默认界面反馈"
+    },
+    {
+      "token": "--duration-slow",
+      "label": "场景切换",
+      "description": "内容展开与复杂过渡"
+    }
+  ],
+  "motionNote": "进入时减速，离开时加速。避免匀速运动。主题切换不经过中间色。",
+  "components": {
+    "buttons": "轻巧的动作",
+    "save": "收藏笔记",
+    "saved": "已收藏",
+    "reset": "重置",
+    "disabled": "暂不可用",
+    "savedMessage": "笔记已在此预览中收藏。",
+    "idleMessage": "悬停或聚焦图标查看操作。收藏笔记以体验选中状态。",
+    "fields": "有分寸的输入",
+    "inputLabel": "收藏集名称",
+    "placeholder": "例如：日常观察",
+    "hint": "简短的名称便于查找收藏集。",
+    "submit": "创建收藏集",
+    "empty": "请先输入收藏集名称。",
+    "created": "已在此预览中创建收藏集：",
+    "states": "用文字说明状态",
+    "success": "保存成功",
+    "warning": "发布前请检查",
+    "error": "缺少必填内容",
+    "preferences": "一个简单的偏好",
+    "switchLabel": "阅读模式",
+    "switchHint": "为下面的样例多留一点呼吸空间。",
+    "readingSample": "一个小小的观察就足够了。记下来，给它一点空间，等有更多话要说时再回来。"
+  },
+  "samples": [
+    {
+      "id": "note",
+      "kind": "note",
+      "title": "一闪而过的念头",
+      "subtitle": "随记 / 值得留下的片刻",
+      "kicker": "随手记 / 014",
+      "heading": "一个没有安排的下午。",
+      "paragraphs": [
+        "一杯抹茶，一把放在旁边的吉他，一个不必赶去哪里的下午。",
+        "有趣的东西总会出现。通常如此。"
+      ],
+      "meta": "9 月 12 日 · 2 分钟",
+      "tags": ["日常笔记", "随兴"]
+    },
+    {
+      "id": "essay",
+      "kind": "essay",
+      "title": "容纳更长的阅读",
+      "subtitle": "文章 / 慢一点的节奏",
+      "kicker": "B 面 / 阅读",
+      "heading": "自己的节奏。",
+      "paragraphs": [
+        "有些日子从计划开始，有些则从隔壁房间的声音，或一条从未走过的街道开始。",
+        "有用的系统容得下两者。它安放熟悉的事物，也为意外留一点余地。",
+        "重点不是消除每个不规则之处，而是决定哪些细节让作品像你自己。"
+      ],
+      "meta": "阅读笔记 · 4 分钟",
+      "tags": ["过程", "专注"]
+    },
+    {
+      "id": "collection",
+      "kind": "collection",
+      "title": "值得再回来的地方",
+      "subtitle": "收藏集 / 熟悉的秩序",
+      "kicker": "私人书架",
+      "heading": "日常观察",
+      "paragraphs": ["从每天收集的几个片段。"],
+      "meta": "3 篇笔记 · 最近更新",
+      "tags": ["隔壁房间的声音", "两个和弦之间的一句话", "绕远的归途"]
+    }
+  ],
+  "usage": {
+    "title": "从共享样式开始",
+    "importCode": "@import \"./styles/tokens.css\";",
+    "exampleTitle": "跟随主题的表面",
+    "exampleCode": ".card {\n  background: var(--color-muted);\n  color: var(--color-foreground);\n  border: 1px solid var(--color-border);\n  border-radius: var(--radius-lg);\n  box-shadow: var(--shadow-sm);\n  font-family: var(--font-sans);\n}\n\n.card:focus-visible {\n  outline: 2px solid var(--color-accent);\n  outline-offset: 2px;\n}",
+    "themeTitle": "让整个系统一起切换",
+    "themeText": "根元素的 dark 类选择深色调色板。首次绘制前读取保存的偏好，否则跟随系统；切换时关闭过渡。",
+    "boundaries": "应用组件使用语义 token。独立图片、画布文档与官方品牌素材可在自身渲染边界内定义明确颜色。",
+    "filename": "card.css",
+    "language": "CSS",
+    "highlightLines": [2, 3, 4]
+  },
+  "decisions": [
+    {
+      "task": "次要说明",
+      "use": "次要文字色，常规字重",
+      "avoid": "降低整个内容块的透明度"
+    },
+    {
+      "task": "重要操作",
+      "use": "强调色搭配强调色上的文字",
+      "avoid": "让主次操作具有相同视觉权重"
+    },
+    {
+      "task": "新增面板",
+      "use": "柔和表面、细边框、小圆角",
+      "avoid": "厚重阴影或过大的圆角"
+    },
+    {
+      "task": "错误提示",
+      "use": "错误色与清楚的文字解释",
+      "avoid": "仅用颜色表达状态"
+    },
+    {
+      "task": "更突出的标题",
+      "use": "字号、间距与最高 600 的字重",
+      "avoid": "厚重或合成粗体"
+    },
+    {
+      "task": "没有图片的头像",
+      "use": "以有意义的名称或角色作为回退",
+      "avoid": "没有身份信息的问号"
+    },
+    {
+      "task": "新增颜色",
+      "use": "命名的色盘值映射到语义角色",
+      "avoid": "在组件里临时写一个十六进制颜色"
+    },
+    {
+      "task": "熟悉的操作",
+      "use": "可辨认图标、无障碍名称和焦点提示",
+      "avoid": "没有说明的符号或缺失的操作标签"
+    }
+  ],
+  "themeOverview": [
+    {
+      "label": "主色",
+      "kind": "color",
+      "token": "--color-accent",
+      "detail": "石板蓝 · Slate blue",
+      "tokens": []
+    },
+    {
+      "label": "中性",
+      "kind": "neutral",
+      "token": "",
+      "detail": "银白至柔墨 · 微绿灰调",
+      "tokens": [
+        "--color-background",
+        "--color-muted",
+        "--color-border",
+        "--color-border-strong",
+        "--color-muted-foreground",
+        "--color-foreground"
+      ]
+    },
+    {
+      "label": "无衬线",
+      "kind": "font",
+      "token": "--font-sans",
+      "detail": "界面与日常正文",
+      "tokens": []
+    },
+    {
+      "label": "衬线",
+      "kind": "font",
+      "token": "--font-serif",
+      "detail": "中文回退：宋体 SC / Noto Serif SC",
+      "tokens": []
+    },
+    {
+      "label": "等宽",
+      "kind": "font",
+      "token": "--font-mono",
+      "detail": "回退：JetBrains Mono",
+      "tokens": []
+    }
+  ],
+  "typeScale": {
+    "title": "日常使用的字号层级",
+    "columns": ["用途", "当前字号", "行高"],
+    "rows": [
+      {
+        "label": "展示标题",
+        "size": "--text-display",
+        "line": "--leading-display"
+      },
+      {
+        "label": "章节标题",
+        "size": "--text-section",
+        "line": "--leading-heading"
+      },
+      {
+        "label": "卡片标题",
+        "size": "--text-heading",
+        "line": "--leading-heading"
+      },
+      {
+        "label": "界面文字",
+        "size": "--text-body",
+        "line": "--leading-body"
+      },
+      {
+        "label": "长文阅读",
+        "size": "--text-reading",
+        "line": "--leading-reading"
+      },
+      {
+        "label": "辅助文字",
+        "size": "--text-small",
+        "line": "--leading-small"
+      },
+      {
+        "label": "代码",
+        "size": "--text-code",
+        "line": "--leading-body"
+      },
+      {
+        "label": "注释",
+        "size": "--text-caption",
+        "line": "--leading-small"
+      }
+    ]
+  },
+  "comparison": {
+    "title": "同一个念头，两种节奏",
+    "description": "同样的内容，两种场景。A 为阅读留白，B 拉近相关细节。两者使用相同主题。",
+    "both": "对照两种排版",
+    "reading": "显示阅读版",
+    "everyday": "显示日常版",
+    "variants": [
+      {
+        "id": "reading",
+        "label": "A / 阅读",
+        "description": "衬线正文 · 舒展间距"
+      },
+      {
+        "id": "everyday",
+        "label": "B / 日常",
+        "description": "无衬线正文 · 紧凑间距"
+      }
+    ],
+    "kicker": "日常笔记 / 014",
+    "heading": "安静的角落，游走的思绪。",
+    "paragraphs": [
+      "一扇开着的窗，一把触手可及的吉他，一个还没找到措辞的念头。有些下午，最好不作安排。",
+      "给想法一个歇脚的地方。等有更多话要说时再回来。"
+    ],
+    "quote": "为意外留一点空间。",
+    "meta": "9 月 12 日 · 阅读约 2 分钟"
+  },
+  "interactions": {
+    "summary": "表单、回复与浮层",
+    "intro": "本地示例，不向页面以外发送或存储任何内容。",
+    "formTitle": "留个念头",
+    "fields": [
+      {
+        "id": "name",
+        "label": "姓名",
+        "placeholder": "你的名字"
+      },
+      {
+        "id": "email",
+        "label": "邮箱",
+        "placeholder": "you@example.com"
+      },
+      {
+        "id": "message",
+        "label": "留言",
+        "placeholder": "什么引起了你的注意？"
+      }
+    ],
+    "required": "请填写此项。",
+    "invalidEmail": "请输入有效的邮箱地址。",
+    "submit": "发布评论",
+    "pending": "正在发布你的想法…",
+    "success": "你的想法已加入本地讨论。",
+    "threadTitle": "一小段对话",
+    "reply": "回复",
+    "replying": "回复给",
+    "cancelReply": "取消回复",
+    "author": "作者",
+    "you": "刚刚",
+    "comments": [
+      {
+        "id": "first",
+        "name": "Mira",
+        "body": "行间的空白让这里成为一个愿意停留的地方。",
+        "meta": "2 小时前",
+        "replyTo": "",
+        "author": false
+      },
+      {
+        "id": "second",
+        "name": "Ren",
+        "body": "正是这个想法。给下一个念头留足空间。",
+        "meta": "1 小时前",
+        "replyTo": "Mira",
+        "author": true
+      }
+    ],
+    "delete": "删除最新评论",
+    "deleteTitle": "移除这条评论？",
+    "deleteDescription": "仅移除本地示例中的最新评论。",
+    "cancel": "保留评论",
+    "confirm": "移除评论",
+    "removed": "评论已从此示例中移除。",
+    "share": "打开分享面板",
+    "shareTitle": "留下这个念头",
+    "shareDescription": "复制指南链接，或将这段对话保存为 Markdown。",
+    "copyLink": "复制指南链接",
+    "download": "下载 Markdown",
+    "copied": "指南链接已复制。",
+    "copyError": "复制失败，请使用下方地址。",
+    "close": "关闭面板"
+  },
+  "stateDemo": {
+    "title": "内容的边界状态",
+    "description": "查看同一块表面在不同状态下的样子。",
+    "states": [
+      {
+        "id": "ready",
+        "label": "显示内容"
+      },
+      {
+        "id": "loading",
+        "label": "显示加载状态"
+      },
+      {
+        "id": "empty",
+        "label": "显示空状态"
+      },
+      {
+        "id": "error",
+        "label": "显示错误状态"
+      },
+      {
+        "id": "long",
+        "label": "显示长标题"
+      }
+    ],
+    "ready": "安放日常观察的地方。",
+    "loading": "正在载入观察…",
+    "empty": "还没有观察。第一个念头就足够了。",
+    "error": "无法载入观察。",
+    "long": "一个关于绕远路回家时，在从未到访的地方意外发现熟悉事物的、小小的日常观察",
+    "retry": "重新载入",
+    "recovered": "观察已载入。",
+    "meta": "日常笔记 / 014"
+  },
+  "toolbar": {
+    "label": "展示页控件",
+    "language": "语言：中文",
+    "locale": "中",
+    "accessibility": "无障碍偏好",
+    "description": "按你的阅读习惯调整此页面。",
+    "largerText": "增大文字",
+    "strongFocus": "加强键盘焦点",
+    "reduceMotion": "减少动态效果",
+    "motionNote": "始终尊重系统的减少动态效果偏好。",
+    "close": "关闭无障碍偏好",
+    "switchLanguage": "Switch to English"
+  },
+  "themeDefinition": {
+    "neutralScale": "个角色 · 表面 / 边界 / 文字",
+    "supporting": "琥珀与抹茶只作辅助点缀。色值随当前主题显示。"
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "labels": {
+    "title": "Document samples",
+    "description": "Open a full-size sample. Each can be printed or saved as a PDF from your browser.",
+    "open": "Open document",
+    "print": "Print or save PDF",
+    "back": "Back to the guide",
+    "sample": "Illustrative sample"
+  },
+  "documents": [
+    {
+      "id": "essay",
+      "label": "Long-form essay",
+      "title": "Room for the next thought",
+      "subtitle": "Notes on attention, useful constraints and the shape of an ordinary day.",
+      "meta": "FIELD NOTES / 014 \u00b7 6 MIN READ",
+      "metrics": [],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "An idea rarely arrives in the shape we expect. It may begin as a phrase overheard on a walk, a line in a notebook, or a chord played while waiting for the kettle. What matters first is having somewhere to put it.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "A useful page makes that first step feel small. The title gives the thought a name. A comfortable measure makes the next sentence easier to read. Space between paragraphs gives the reader permission to pause.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "A place to begin",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "There is a difference between an empty page and a page with room left in it. One can feel like an instruction to produce something. The other can feel like an invitation to notice what is already there.",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "Leave enough room for the thought to change its mind.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "The same distinction appears in an interface. A field can demand an answer, or quietly explain what would be useful. A button can compete for attention, or wait until the reader is ready. Small decisions accumulate into the feeling of a place.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "A few useful constraints",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Give each color a clear role.",
+            "Keep the reading measure comfortable.",
+            "Make the next action easy to identify.",
+            "Let a pause separate one idea from the next."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Constraints make it easier to keep working. If the basic decisions have already been made, each new page does not need a new visual language. A note and an essay can share a family resemblance while keeping their own pace.",
+          "items": []
+        },
+        {
+          "kind": "code",
+          "text": "article {\n  max-width: 65ch;\n  font-family: var(--font-serif);\n  line-height: var(--leading-reading);\n}",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "Returning to the page",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Later, the note becomes useful in a different way. A date places it in time. A short label connects it to another thought. A quotation brings back the voice that first made it worth saving. These details should remain available without interrupting the reading.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Some entries stay as fragments. Others grow into a longer piece. The system should be comfortable with both. A small observation does not need to become an article to deserve a place.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "That is the point of a personal design system: not to make everything look identical, but to make it easier to recognize what belongs together. The page can be steady while the work remains open-ended.",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "A familiar frame. Something unexpected inside.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "When the next thought arrives, there is already a place for it. The rest can happen at its own pace.",
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "resume",
+      "label": "One-page resume",
+      "title": "Ren Mori",
+      "subtitle": "Designer & frontend developer",
+      "meta": "ILLUSTRATIVE PROFILE \u00b7 AVAILABLE FOR COLLABORATION",
+      "metrics": [],
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "I design thoughtful interfaces and build the systems behind them, with a focus on reading, personal tools and accessible interactions.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "Selected experience",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Independent designer \u00b7 2023\u2013present",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Designed and built personal publishing tools with responsive reading layouts.",
+            "Created shared tokens and reusable components for light and dark themes.",
+            "Worked across interaction design, frontend implementation and accessibility."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Product designer \u00b7 Small Studio \u00b7 2021\u20132023",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Simplified forms and navigation for a small knowledge platform.",
+            "Documented patterns for content, feedback and keyboard interaction."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Selected work",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Field Notes \u2014 A personal writing space with a reusable typographic system.",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Small Collections \u2014 A lightweight library for fragments, links and observations.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "Skills",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Design: interaction, typography, prototyping, design systems",
+            "Development: TypeScript, React, CSS, accessible HTML",
+            "Practice: documentation, code review, usability testing"
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Contact",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "ren@example.com \u00b7 Portfolio available on request",
+          "items": []
+        }
+      ]
+    },
+    {
+      "id": "report",
+      "label": "One-page report",
+      "title": "A clearer reading experience",
+      "subtitle": "Design review \u00b7 September",
+      "meta": "PROJECT NOTE / 03 \u00b7 ILLUSTRATIVE DATA",
+      "metrics": [
+        {
+          "value": "3",
+          "label": "Page types"
+        },
+        {
+          "value": "2",
+          "label": "Color modes"
+        },
+        {
+          "value": "1",
+          "label": "Shared system"
+        }
+      ],
+      "blocks": [
+        {
+          "kind": "heading",
+          "text": "Objective",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Make notes, essays and collections feel related while giving each format an appropriate reading rhythm.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "Completed",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Established shared color and typography roles.",
+            "Compared a reading layout with an everyday interface layout.",
+            "Added consistent icon actions and explicit feedback."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Observation",
+          "items": []
+        },
+        {
+          "kind": "quote",
+          "text": "The most useful improvement was a clearer hierarchy, not a larger component library.",
+          "items": []
+        },
+        {
+          "kind": "heading",
+          "text": "Next review",
+          "items": []
+        },
+        {
+          "kind": "list",
+          "text": "",
+          "items": [
+            "Review long titles and empty collections on narrow screens.",
+            "Check both themes with keyboard navigation.",
+            "Print the document samples and inspect page breaks."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Decision",
+          "items": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Keep the shared palette and component shapes. Adjust type scale and spacing by context, with reading comfort as the deciding factor.",
+          "items": []
+        }
+      ]
+    }
+  ]
+}
