@@ -2,13 +2,101 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { expect, it } from "vite-plus/test";
+import { build } from "vite-plus";
+import { JSDOM } from "jsdom";
 import english from "../src/content/showcase.json";
 import chinese from "../src/content/showcase.zh.json";
 import englishDocuments from "../src/content/documents.json";
 import chineseDocuments from "../src/content/documents.zh.json";
+import { sharingPages, pageMetadata } from "../src/lib/metadata";
 
 const tokens = await readFile("src/styles/tokens.css", "utf8");
 const palette = await readFile("src/styles/palette.css", "utf8");
+
+it("ships crawler-readable metadata and valid linked image assets without JavaScript", async () => {
+  const result = await build({ build: { write: false }, logLevel: "silent" });
+  assert.ok(!Array.isArray(result) && "output" in result);
+  for (const page of sharingPages) {
+    const fileName = page.path === "/" ? "index.html" : `${page.path.slice(1)}index.html`;
+    const file = result.output.find((item) => item.fileName === fileName);
+    assert.ok(file && file.type === "asset" && typeof file.source === "string");
+    const parsed = new JSDOM(file.source);
+    const doc = parsed.window.document;
+    expect(doc.documentElement.lang).toBe(page.locale === "zh" ? "zh-CN" : "en");
+    expect(doc.title).toBe(page.title);
+    const origin = `https://${(await readFile("public/CNAME", "utf8")).trim()}`;
+    expect(doc.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
+      `${origin}${page.path}`,
+    );
+    expect(doc.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe(
+      `${origin}${page.imagePath}`,
+    );
+    expect(doc.querySelector('meta[property="og:description"]')?.getAttribute("content")).toBe(
+      page.description,
+    );
+    expect(doc.querySelectorAll('link[rel="alternate"][hreflang]').length).toBe(3);
+    expect(file.source).not.toMatch(/%[A-Z_]+%|__THEME_KEY__/);
+    const image = await readFile(`public${page.imagePath}`);
+    expect([image.readUInt32BE(16), image.readUInt32BE(20)]).toEqual([1200, 630]);
+    expect(await readFile("public/sitemap.xml", "utf8")).toContain(
+      `<loc>${origin}${page.path}</loc>`,
+    );
+    parsed.window.close();
+  }
+  const html = result.output.find((file) => file.fileName === "index.html");
+  assert.ok(html && html.type === "asset" && typeof html.source === "string");
+  expect(html.source).not.toMatch(/%[A-Z_]+%|__THEME_KEY__/);
+  const dom = new JSDOM(html.source);
+  const head = dom.window.document.head;
+  const metadata = (selector: string) => head.querySelector(selector)?.getAttribute("content");
+  const origin = `https://${(await readFile("public/CNAME", "utf8")).trim()}/`;
+  expect(head.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(origin);
+  expect(metadata('meta[property="og:url"]')).toBe(origin);
+  expect(metadata('meta[property="og:title"]')).toBe(dom.window.document.title);
+  expect(metadata('meta[property="og:description"]')).toBe(english.site.metadata);
+  expect(metadata('meta[property="og:type"]')).toBe("website");
+  expect(metadata('meta[property="og:image"]')).toBe(`${origin}opengraph-image.png`);
+  expect(metadata('meta[property="og:image:alt"]')).toBe(pageMetadata("en").imageAlt);
+  expect(metadata('meta[name="twitter:card"]')).toBe("summary_large_image");
+  expect(metadata('meta[name="twitter:image"]')).toBe(metadata('meta[property="og:image"]'));
+  for (const link of head.querySelectorAll(
+    'link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]',
+  )) {
+    const href = link.getAttribute("href");
+    assert.ok(href?.startsWith("/"));
+    expect((await readFile(`public${href}`)).length).toBeGreaterThan(0);
+  }
+  for (const [name, width, height] of [
+    ["opengraph-image.png", 1200, 630],
+    ["apple-touch-icon.png", 180, 180],
+    ["icon-192.png", 192, 192],
+    ["icon-512.png", 512, 512],
+  ] satisfies [string, number, number][]) {
+    const png = await readFile(`public/${name}`);
+    expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+    expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([width, height]);
+  }
+  const ico = await readFile("public/favicon.ico");
+  expect(ico.readUInt16LE(2)).toBe(1);
+  expect(ico.readUInt16LE(4)).toBe(3);
+  [16, 32, 48].forEach((size, index) => {
+    const entry = 6 + index * 16;
+    expect([ico[entry], ico[entry + 1]]).toEqual([size, size]);
+    const offset = ico.readUInt32LE(entry + 12);
+    const length = ico.readUInt32LE(entry + 8);
+    expect(offset + length).toBeLessThanOrEqual(ico.length);
+    expect(ico.readUInt32BE(offset + 16)).toBe(size);
+  });
+  const manifest = JSON.parse(await readFile("public/site.webmanifest", "utf8"));
+  expect(manifest.name).toBe(english.site.name);
+  expect(manifest.icons.map((icon: { src: string }) => icon.src)).toEqual([
+    "/icon-192.png",
+    "/icon-512.png",
+  ]);
+  expect(await readFile("public/robots.txt", "utf8")).toContain(`Sitemap: ${origin}sitemap.xml`);
+  expect(await readFile("public/sitemap.xml", "utf8")).toContain(`<loc>${origin}</loc>`);
+  dom.window.close();
+});
 
 it("keeps application colors behind declared semantic tokens", async () => {
   const declared = new Set([...tokens.matchAll(/(--[\w-]+)\s*:/g)].map((match) => match[1]));

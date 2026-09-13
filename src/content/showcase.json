@@ -8,7 +8,8 @@
     "metadata": "My Design — a personal design system with silver light, ink-dark surfaces, matcha, blue and amber. Unhurried typography and light, icon-led interactions.",
     "signature": "Less convention. More character.",
     "footer": "Follow what catches your eye.",
-    "themeKey": "my-design:theme"
+    "themeKey": "my-design:theme",
+    "imageAlt": "My Design sharing card with a silver content panel and an ink-dark avatar panel."
   },
   "labels": {
     "skip": "Skip to content",

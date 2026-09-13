@@ -1,13 +1,8 @@
 import { defineConfig } from "vite-plus";
 import react from "@vitejs/plugin-react";
-import content from "./src/content/showcase.json" with { type: "json" };
+import { sharingPages, resolvePage } from "./src/lib/metadata";
 
-const escapeHtml = (text: string) =>
-  text
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+import { renderMetadata } from "./scripts/site-metadata";
 
 export default defineConfig({
   lint: {
@@ -31,17 +26,27 @@ export default defineConfig({
       name: "showcase-metadata",
       transformIndexHtml: {
         order: "pre",
-        handler: (html) =>
-          html
-            .replace(
-              "%SITE_TITLE%",
-              escapeHtml(`${content.site.name} — ${content.site.title.replaceAll("\n", " ")}`),
-            )
-            .replace("%SITE_DESCRIPTION%", escapeHtml(content.site.metadata))
-            .replace(
-              /(['"])__THEME_KEY__\1/,
-              JSON.stringify(content.site.themeKey).replaceAll("<", "\\u003c"),
-            ),
+        handler: (html, context) => {
+          const url = new URL(context.originalUrl ?? context.path, "https://local.invalid");
+          const page = resolvePage(url.pathname, url.search);
+          return renderMetadata(html, page.locale, page.documentId);
+        },
+      },
+      generateBundle: {
+        order: "post",
+        handler(_, bundle) {
+          const index = bundle["index.html"];
+          if (!index || index.type !== "asset" || typeof index.source !== "string") {
+            throw new Error("Missing built HTML for localized sharing pages");
+          }
+          for (const page of sharingPages.filter((page) => page.path !== "/")) {
+            this.emitFile({
+              type: "asset",
+              fileName: `${page.path.slice(1)}index.html`,
+              source: renderMetadata(index.source, page.locale, page.documentId),
+            });
+          }
+        },
       },
     },
   ],

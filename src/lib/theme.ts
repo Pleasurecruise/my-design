@@ -5,6 +5,9 @@ export function applyTheme(dark: boolean) {
   const root = document.documentElement;
   root.classList.add("theme-switching");
   root.classList.toggle("dark", dark);
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute("content", getComputedStyle(root).getPropertyValue("--color-background").trim());
   void root.offsetWidth;
   requestAnimationFrame(() => root.classList.remove("theme-switching"));
 }

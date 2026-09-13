@@ -59,7 +59,7 @@ All chapters remain in the document, with native anchor targets for direct links
 
 Typography uses shared responsive size and line-height tokens. The A/B comparison presents identical content in Reading (serif, generous spacing) and Everyday (sans, compact spacing) variants. Expanded component examples include a validated comment form, replies, deletion confirmation, a share sheet and loading, empty, error and long-title states. Comments stay in memory and reset on refresh; the form does not send data to a server.
 
-The specimen chapter links to `?document=essay`, `?document=resume` and `?document=report`. Each standalone sample has a print action for browser printing or saving as PDF, with an A4 stylesheet and light print colors. Final pagination depends on browser print settings.
+The specimen chapter links to `/documents/essay/`, `/documents/resume/` and `/documents/report/` (with `/zh` prefixes in Chinese). Each standalone sample has a print action for browser printing or saving as PDF, with an A4 stylesheet and light print colors. Final pagination depends on browser print settings.
 
 ## Icon actions
 
@@ -85,3 +85,5 @@ Configure the repository under **Settings → Pages**:
 `public/CNAME` is copied to the build output. With Actions deployments, GitHub uses the repository's custom-domain setting rather than the CNAME file; both the Pages setting and DNS record must be configured. See [GitHub's custom-domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
 The custom domain serves the app at its root, so Vite's default `base: "/"` is appropriate. Keep the build output out of Git; Actions uploads it as a deployment artifact.
+
+Run `pnpm exec playwright install chromium` once locally; `pnpm run og` generates the eight 1200×630 cards and sitemap from locale JSON, CSS tokens and the site icon. The production build runs it automatically. Chromium renders offline without a preview server; the build-only Chinese font stays in dependencies. English and Chinese guides (`/`, `/zh/`) and document pages (`/documents/essay/`, `/zh/documents/essay/`, likewise resume/report) each receive static HTML metadata, a canonical URL, language alternates and their own image. Legacy `?document=` links remain supported in the browser.

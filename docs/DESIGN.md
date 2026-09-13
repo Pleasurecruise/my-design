@@ -2,11 +2,11 @@
 
 ## Identity
 
-A personal design system inspired by Rana Kaname's silver hair, contrasting blue and amber eyes, quiet independence and fondness for matcha. Express these qualities through color, typography and a small feline mark. Character artwork is not part of the interface.
+A personal design system inspired by Rana Kaname's silver hair, contrasting blue and amber eyes, quiet independence and fondness for matcha. Express these qualities through color, typography and a small feline mark. Character artwork is reserved for browser icons, home-screen icons and the avatar in social previews; the interface uses the small feline mark. Social cards place page content on a silver panel beside an ink-dark identity panel, with blue and amber edge accents and a matcha detail.
 
 The tone is calm, curious and slightly playful. Japanese influence comes from natural tones, careful spacing and restrained serif headings. Avoid ornamental motifs, pink-led palettes and decorative card framing.
 
-Yohaku informs the continuous showcase format and breadth of examples. Keep this system's palette, typography and independent corner controls distinct. Do not claim a numerical similarity score.
+Use continuous chapters to organize the examples. Keep the palette, typography and independent corner controls consistent with this system’s identity.
 
 ## Sources of truth
 

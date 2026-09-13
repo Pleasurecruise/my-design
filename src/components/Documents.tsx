@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { ArrowLeft, ArrowUpRight, Printer } from "lucide-react";
 import data from "../content/documents.json";
-import { useContent, useDocuments } from "../lib/i18n";
+import { useContent, useDocuments, useLocale } from "../lib/i18n";
+import { pagePath } from "../lib/metadata";
 import { IconButton } from "./IconButton";
 
 export function getDocument(id: string | null) {
@@ -10,6 +11,7 @@ export function getDocument(id: string | null) {
 
 export function DocumentLinks() {
   const data = useDocuments();
+  const locale = useLocale();
   return (
     <div className="document-links">
       <div>
@@ -19,7 +21,7 @@ export function DocumentLinks() {
       <ul>
         {data.documents.map((document) => (
           <li key={document.id}>
-            <a href={`?document=${document.id}`} target="_blank" rel="noreferrer">
+            <a href={pagePath(locale, document.id)} target="_blank" rel="noreferrer">
               {document.label}
               <ArrowUpRight size={16} strokeWidth={1.6} aria-hidden="true" />
             </a>
@@ -36,6 +38,7 @@ export function DocumentPage({
   document: NonNullable<ReturnType<typeof getDocument>>;
 }) {
   const data = useDocuments();
+  const locale = useLocale();
   const content = useContent();
   const doc = data.documents.find((item) => item.id === original.id)!;
   useEffect(() => {
@@ -48,7 +51,7 @@ export function DocumentPage({
     <div className={`document-page document-page--${doc.id}`}>
       <nav className="document-toolbar" aria-label={data.labels.title}>
         <a
-          href="./#specimens"
+          href={`${pagePath(locale)}#specimens`}
           className="icon-link"
           aria-label={data.labels.back}
           title={data.labels.back}

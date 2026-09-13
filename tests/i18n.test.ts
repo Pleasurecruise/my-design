@@ -10,6 +10,7 @@ import { useTheme } from "../src/lib/theme";
 import english from "../src/content/showcase.json";
 import chinese from "../src/content/showcase.zh.json";
 import documents from "../src/content/documents.zh.json";
+import { pageMetadata, resolvePage } from "../src/lib/metadata";
 
 function ThemeControl() {
   const { dark, toggle } = useTheme();
@@ -22,7 +23,10 @@ beforeEach(() => {
   document.documentElement.className = "";
   localStorage.clear();
   setLocale("en");
-  document.head.innerHTML = '<meta name="description" content="">';
+  document.head.innerHTML = `<meta name="description" content="">
+    <meta property="og:title"><meta property="og:description"><meta property="og:locale">
+    <meta property="og:image:alt"><meta name="twitter:title"><meta name="twitter:description">
+    <meta name="twitter:image:alt"><meta name="theme-color">`;
   vi.useFakeTimers();
 });
 afterEach(() => {
@@ -53,15 +57,31 @@ it("changes live copy and metadata without discarding a comment draft", () => {
   expect(screen.getByText(chinese.interactions.comments[0].body)).toBeDefined();
   expect(
     screen.getByRole("link", { name: documents.documents[0].label }).getAttribute("href"),
-  ).toBe("?document=essay");
+  ).toBe("/zh/documents/essay/");
   expect(document.documentElement.lang).toBe("zh-CN");
   expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(
     chinese.site.metadata,
   );
   expect(localStorage.getItem("my-design:locale")).toBe("zh");
+  expect(document.title).toBe(`${chinese.site.name} — ${chinese.site.title.replaceAll("\n", " ")}`);
+  expect(document.querySelector('meta[property="og:title"]')?.getAttribute("content")).toBe(
+    document.title,
+  );
+  expect(document.querySelector('meta[property="og:locale"]')?.getAttribute("content")).toBe(
+    "zh_CN",
+  );
+  expect(document.querySelector('meta[name="twitter:description"]')?.getAttribute("content")).toBe(
+    chinese.site.metadata,
+  );
   fireEvent.click(screen.getByRole("button", { name: chinese.toolbar.switchLanguage }));
   expect(screen.getByLabelText("Message")).toBe(screen.getByDisplayValue("Keep my draft."));
   expect(document.documentElement.lang).toBe("en");
+  expect(document.querySelector('meta[property="og:locale"]')?.getAttribute("content")).toBe(
+    "en_US",
+  );
+  expect(document.querySelector('meta[name="twitter:image:alt"]')?.getAttribute("content")).toBe(
+    pageMetadata("en").imageAlt,
+  );
 });
 
 it("restores the saved locale when the language module initializes", async () => {
@@ -79,12 +99,20 @@ it("follows system changes until the user explicitly chooses a theme", () => {
   const removeListener = vi.spyOn(query, "removeEventListener");
   const { unmount } = render(createElement(ThemeControl));
   act(() => {
+    document.documentElement.style.setProperty("--color-background", "#1c201f");
     query.matches = true;
     query.dispatchEvent(new Event("change"));
   });
   expect(screen.getByRole("button").textContent).toBe("Dark");
   expect(document.documentElement.classList.contains("dark")).toBe(true);
+  expect(document.querySelector('meta[name="theme-color"]')?.getAttribute("content")).toBe(
+    "#1c201f",
+  );
+  document.documentElement.style.setProperty("--color-background", "#f6f6f2");
   fireEvent.click(screen.getByRole("button"));
+  expect(document.querySelector('meta[name="theme-color"]')?.getAttribute("content")).toBe(
+    "#f6f6f2",
+  );
   expect(localStorage.getItem(content.site.themeKey)).toBe("light");
   act(() => {
     query.dispatchEvent(new Event("change"));
@@ -133,4 +161,25 @@ it("restores focus on Escape and removes accessibility preferences on unmount", 
   expect(document.documentElement.hasAttribute("data-largertext")).toBe(false);
   expect(document.documentElement.hasAttribute("data-strongfocus")).toBe(false);
   expect(document.documentElement.hasAttribute("data-reducemotion")).toBe(false);
+});
+
+it("resolves localized sharing routes and preserves legacy document links", () => {
+  expect(resolvePage("/zh/documents/essay/")).toEqual({ locale: "zh", documentId: "essay" });
+  expect(resolvePage("/", "?document=report")).toEqual({ locale: "en", documentId: "report" });
+  expect(resolvePage("/documents/unknown/").documentId).toBeUndefined();
+});
+
+it("updates the share URL and metadata while retaining query parameters and hash", () => {
+  history.replaceState(null, "", "/documents/essay/?source=link#section");
+  document.head.innerHTML +=
+    '<link rel="canonical" href="https://design.you-find.me/documents/essay/"><meta property="og:image"><meta property="og:url">';
+  setLocale("zh");
+  expect(location.pathname).toBe("/zh/documents/essay/");
+  expect(location.search).toBe("?source=link");
+  expect(location.hash).toBe("#section");
+  expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe(
+    "https://design.you-find.me/og/zh-essay.png",
+  );
+  expect(document.title).toBe(pageMetadata("zh", "essay").title);
+  history.replaceState(null, "", "/");
 });

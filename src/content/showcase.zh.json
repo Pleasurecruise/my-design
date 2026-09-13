@@ -8,7 +8,8 @@
     "metadata": "My Design — 以银白、墨色、抹茶绿、蓝与琥珀构成的个人设计系统。舒展的排版，轻巧的图标交互。",
     "signature": "少一点惯例，多一点性格。",
     "footer": "循着感兴趣的方向。",
-    "themeKey": "my-design:theme"
+    "themeKey": "my-design:theme",
+    "imageAlt": "My Design 分享卡：银白内容区与墨色头像区。"
   },
   "labels": {
     "skip": "跳至正文",
