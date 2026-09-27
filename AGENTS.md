@@ -16,7 +16,7 @@
 - Avoid unnecessary `typeof` probes or type-query aliases. Use the known runtime and explicit models instead of adding compatibility scaffolding.
 - Handle expected failures where they occur. Do not add broad try/catch blocks, silent defaults or speculative compatibility layers.
 - Extract helpers only for shared behavior or a substantial algorithm. Avoid one-use wrappers and unnecessary dependencies.
-- Keep display copy in the locale JSON files. English is the default; maintain Chinese translations with the same structure. Keep code, identifiers and font names stable across languages.
+- Keep display copy in the locale JSON files. English is the base and fallback locale; maintain Chinese translations with the same structure. Select the initial interface language from browser preferences unless a saved manual choice or explicit Chinese URL takes priority. Keep code, identifiers and font names stable across languages.
 - Do not embed developer filesystem paths or external project contents in application code.
 - Use semantic tokens in components. Add physical color values to `palette.css`, then map them in `tokens.css`.
 - Use the existing Lucide icons and accessible controls. Preserve form input when changing locale or theme.

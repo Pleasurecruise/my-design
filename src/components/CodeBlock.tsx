@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useContent } from "../lib/i18n";
 import { IconButton } from "./IconButton";
 import { Copy, Check } from "lucide-react";
@@ -18,6 +18,7 @@ export function CodeBlock({
 }) {
   const content = useContent();
   const [status, setStatus] = useState("");
+  const lines = code.split("\n");
   async function copy() {
     try {
       await navigator.clipboard.writeText(code);
@@ -45,14 +46,15 @@ export function CodeBlock({
       </div>
       <pre tabIndex={0}>
         <code>
-          {code.split("\n").map((line, index) => (
-            <span
-              className={`code-line ${highlightLines.includes(index + 1) ? "code-line--highlight" : ""}`}
-              key={index}
-            >
-              {line || " "}
-              {index < code.split("\n").length - 1 ? "\n" : ""}
-            </span>
+          {lines.map((line, index) => (
+            <Fragment key={index}>
+              <span
+                className={`code-line ${highlightLines.includes(index + 1) ? "code-line--highlight" : ""}`}
+              >
+                {line || " "}
+              </span>
+              {index < lines.length - 1 ? "\n" : ""}
+            </Fragment>
           ))}
         </code>
       </pre>

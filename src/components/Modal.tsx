@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode, type KeyboardEventHandler } from "react";
 import { X } from "lucide-react";
 import { useContent } from "../lib/i18n";
 import { IconButton } from "./IconButton";
@@ -8,11 +8,15 @@ export function Modal({
   onClose,
   children,
   sheet = false,
+  className = "",
+  onKeyDown,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   sheet?: boolean;
+  className?: string;
+  onKeyDown?: KeyboardEventHandler<HTMLDialogElement>;
 }) {
   const content = useContent();
   const ref = useRef<HTMLDialogElement>(null);
@@ -34,9 +38,10 @@ export function Modal({
   return (
     <dialog
       ref={ref}
-      className={`sample-dialog interaction-dialog ${sheet ? "interaction-dialog--sheet" : ""}`}
+      className={`sample-dialog interaction-dialog ${sheet ? "interaction-dialog--sheet" : ""} ${className}`}
       aria-label={title}
       onClose={onClose}
+      onKeyDown={onKeyDown}
       onClick={(event) => {
         if (event.target === event.currentTarget) ref.current?.close();
       }}

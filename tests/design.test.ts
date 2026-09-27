@@ -16,9 +16,10 @@ const palette = await readFile("src/styles/palette.css", "utf8");
 it("ships crawler-readable metadata and valid linked image assets without JavaScript", async () => {
   const result = await build({ build: { write: false }, logLevel: "silent" });
   assert.ok(!Array.isArray(result) && "output" in result);
+  const assets = new Map(result.output.map((asset) => [asset.fileName, asset]));
   for (const page of sharingPages) {
     const fileName = page.path === "/" ? "index.html" : `${page.path.slice(1)}index.html`;
-    const file = result.output.find((item) => item.fileName === fileName);
+    const file = assets.get(fileName);
     assert.ok(file && file.type === "asset" && typeof file.source === "string");
     const parsed = new JSDOM(file.source);
     const doc = parsed.window.document;
@@ -134,6 +135,12 @@ it("keeps both locale structures and navigation identities aligned", () => {
     englishDocuments.documents.map((document) => document.id),
   );
   expect(chinese.usage.exampleCode).toBe(english.usage.exampleCode);
+  expect(chinese.oc.chapters.map(({ id, code }) => ({ id, code }))).toEqual(
+    english.oc.chapters.map(({ id, code }) => ({ id, code })),
+  );
+  expect(chinese.oc.referenceViews.map(({ id, src }) => ({ id, src }))).toEqual(
+    english.oc.referenceViews.map(({ id, src }) => ({ id, src })),
+  );
 });
 
 function luminance(hex: string) {
@@ -184,5 +191,62 @@ it("keeps designated text roles at AA contrast on both page surfaces", () => {
       const contrast = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
       expect(contrast, `${mode} ${role} on the page surface`).toBeGreaterThanOrEqual(4.5);
     }
+  }
+});
+
+it("keeps OC asset references, dimensions and sticker crops consistent", async () => {
+  const oc = english.oc;
+  const translated = chinese.oc;
+  const artwork = [
+    oc.portrait,
+    oc.wardrobe.current.artwork,
+    ...oc.wardrobe.alternates,
+    ...oc.referenceViews,
+    ...oc.gallery.scenes,
+    oc.gallery.details,
+    oc.stickers,
+  ];
+  const localized = [
+    translated.portrait,
+    translated.wardrobe.current.artwork,
+    ...translated.wardrobe.alternates,
+    ...translated.referenceViews,
+    ...translated.gallery.scenes,
+    translated.gallery.details,
+    translated.stickers,
+  ];
+  expect(localized.map(({ src, width, height }) => ({ src, width, height }))).toEqual(
+    artwork.map(({ src, width, height }) => ({ src, width, height })),
+  );
+  const collections = [
+    [oc.wardrobe.current.artwork, ...oc.wardrobe.alternates],
+    [...oc.referenceViews, ...oc.gallery.scenes, oc.gallery.details],
+  ];
+  const translatedCollections = [
+    [translated.wardrobe.current.artwork, ...translated.wardrobe.alternates],
+    [...translated.referenceViews, ...translated.gallery.scenes, translated.gallery.details],
+  ];
+  expect(translatedCollections.map((items) => items.map(({ id }) => id))).toEqual(
+    collections.map((items) => items.map(({ id }) => id)),
+  );
+  for (const items of collections) {
+    expect(new Set(items.map(({ id }) => id)).size).toBe(items.length);
+  }
+  for (const item of artwork) {
+    expect(item.src).toMatch(/^\/oc\/[\w-]+\.png$/);
+    const image = await readFile(`public${item.src}`);
+    expect([image.readUInt32BE(16), image.readUInt32BE(20)]).toEqual([item.width, item.height]);
+  }
+  expect(translated.stickers.items.map(({ id, crop }) => ({ id, crop }))).toEqual(
+    oc.stickers.items.map(({ id, crop }) => ({ id, crop })),
+  );
+  expect(new Set(oc.stickers.items.map(({ id }) => id)).size).toBe(oc.stickers.items.length);
+  for (const { crop } of oc.stickers.items) {
+    expect(crop.x).toBeGreaterThanOrEqual(0);
+    expect(crop.y).toBeGreaterThanOrEqual(0);
+    expect(crop.width).toBeGreaterThan(0);
+    expect(crop.height).toBeGreaterThan(0);
+    expect(crop.x + crop.width).toBeLessThanOrEqual(oc.stickers.width);
+    expect(crop.y + crop.height).toBeLessThanOrEqual(oc.stickers.height);
   }
 });

@@ -1,15 +1,13 @@
 {
   "site": {
     "name": "My Design",
-    "eyebrow": "At an unhurried pace",
-    "edition": "DESIGN SYSTEM / 02",
     "title": "A little quiet.\nA mind of its own.",
-    "description": "A place for passing thoughts and things worth keeping. Silver light, a trace of matcha, and two small notes of blue and amber.",
-    "metadata": "My Design — a personal design system with silver light, ink-dark surfaces, matcha, blue and amber. Unhurried typography and light, icon-led interactions.",
+    "description": "Drawn from Vesper’s everyday world: warm white and charcoal leave room to breathe, slate blue keeps things clear, and pale gold adds warmth.",
+    "metadata": "My Design — a personal design system sharing Vesper’s visual language. Warm white, charcoal, slate blue and amber, with clear typography and light interactions.",
     "signature": "Less convention. More character.",
     "footer": "Follow what catches your eye.",
     "themeKey": "my-design:theme",
-    "imageAlt": "My Design sharing card with a silver content panel and an ink-dark avatar panel."
+    "imageAlt": "My Design sharing card with a warm-white content panel, charcoal portrait panel and blue-gold accents."
   },
   "labels": {
     "skip": "Skip to content",
@@ -51,8 +49,8 @@
     {
       "id": "color",
       "label": "Color",
-      "title": "Silver light. A trace of matcha.",
-      "description": "Soft neutrals leave space around the content. Blue and amber carry the contrast; a muted green brings a quieter note."
+      "title": "Everyday blue. A little gold.",
+      "description": "Warm white echoes her everyday top, charcoal her dark hair, slate blue her jacket and blue eye, and amber her gold eye and hair tips. Matcha stays a small everyday detail."
     },
     {
       "id": "typography",
@@ -94,7 +92,7 @@
   "principles": [
     {
       "title": "Quiet surfaces.",
-      "text": "Silver-white and soft ink carry the page. Use borders and tonal changes before adding depth."
+      "text": "Warm white and charcoal echo Vesper’s light top and dark hair. Use borders and tonal differences before adding shadows."
     },
     {
       "title": "A small trace of color.",
@@ -110,7 +108,7 @@
     },
     {
       "title": "Character in the margins.",
-      "text": "A feline mark or an unexpected pause is enough. Let the content stay at the center."
+      "text": "A feline mark, blue actions and small gold details connect the design guide to Vesper. Keep content clear and playfulness in the details."
     },
     {
       "title": "Roles before values.",
@@ -128,13 +126,13 @@
   "colors": [
     {
       "token": "--color-background",
-      "name": "Silver white / Soft ink",
+      "name": "Warm white / Charcoal",
       "role": "The page",
       "group": "neutral"
     },
     {
       "token": "--color-muted",
-      "name": "Tea mist / Charcoal",
+      "name": "Cloud grey / Soft graphite",
       "role": "Quiet surfaces",
       "group": "neutral"
     },
@@ -158,7 +156,7 @@
     },
     {
       "token": "--color-foreground",
-      "name": "Ink / Silver white",
+      "name": "Graphite / Warm white",
       "role": "Body and headings",
       "group": "neutral"
     },
@@ -195,21 +193,21 @@
     {
       "token": "--color-secondary",
       "name": "Amber",
-      "role": "Secondary emphasis",
+      "role": "Small accents echoing her gold eye and hair tips",
       "group": "accent"
     },
     {
       "token": "--color-subtle-accent",
       "name": "Matcha",
-      "role": "Quiet identity details",
+      "role": "A small everyday preference",
       "group": "accent"
     }
   ],
   "accent": {
-    "title": "Two eyes. One quiet green.",
+    "title": "Blue and gold, one everyday identity.",
     "subtitle": "The character of the palette",
-    "text": "A silver-white foundation and soft ink recall a monochrome silhouette. Muted blue and amber keep their individual character. Matcha appears sparingly, like a small personal preference in an otherwise quiet room.",
-    "note": "These colors are an interpretation for this system. Large samples are for inspection; actual interfaces keep chromatic emphasis compact."
+    "text": "Vesper’s black-to-gold hair and contrasting eyes set the relationship: charcoal for structure and text, warm white for reading, slate blue for actions, and amber for selected details. Matcha remains a small personal preference rather than tinting the whole neutral scale.",
+    "note": "These are interface interpretations, not exact character-art swatches. Both themes share semantic roles; illustrations retain their original colors."
   },
   "colorTable": [
     {
@@ -413,7 +411,7 @@
       "kicker": "OFF THE RECORD / 014",
       "heading": "An unscheduled afternoon.",
       "paragraphs": [
-        "A cup of matcha, a guitar resting nearby, and an afternoon with nowhere in particular to go.",
+        "A cup of matcha, a controller resting nearby, and an afternoon with nowhere in particular to go.",
         "Something interesting will turn up. It usually does."
       ],
       "meta": "September 12 · 2 min",
@@ -512,7 +510,7 @@
       "label": "Neutrals",
       "kind": "neutral",
       "token": "",
-      "detail": "Silver to soft ink · green-tinted grays",
+      "detail": "Warm white to charcoal · softly cool greys",
       "tokens": [
         "--color-background",
         "--color-muted",
@@ -718,19 +716,562 @@
   },
   "toolbar": {
     "label": "Showcase controls",
-    "language": "Language: English",
     "locale": "EN",
-    "accessibility": "Accessibility preferences",
-    "description": "Adjust this page to suit the way you read.",
-    "largerText": "Larger text",
-    "strongFocus": "Stronger keyboard focus",
-    "reduceMotion": "Reduce motion",
-    "motionNote": "Your system’s reduced-motion preference is always respected.",
-    "close": "Close accessibility preferences",
     "switchLanguage": "Switch to Chinese"
   },
   "themeDefinition": {
     "neutralScale": "roles · surface / edge / text",
-    "supporting": "Amber and matcha are supporting accents. Values follow the active theme."
+    "supporting": "Slate blue guides actions, amber echoes her gold eye and hair tips, and matcha stays occasional. Values follow the active theme."
+  },
+  "navigation": {
+    "label": "Main navigation",
+    "design": "Design system",
+    "oc": "Original character",
+    "chapters": "Chapters",
+    "studio": "A personal creative space"
+  },
+  "oc": {
+    "eyebrow": "OC / 01",
+    "title": "Qiye / Vesper",
+    "description": "Relaxed and perceptive / Led by curiosity / Free spirit / Stubborn romantic",
+    "profileTitle": "At a glance",
+    "facts": [
+      {
+        "label": "Gender",
+        "value": "Female"
+      },
+      {
+        "label": "Age",
+        "value": "16–17"
+      },
+      {
+        "label": "Height",
+        "value": "~167 cm"
+      },
+      {
+        "label": "MBTI",
+        "value": "ENFP"
+      }
+    ],
+    "portrait": {
+      "src": "/oc/qiye-portrait.png",
+      "alt": "Vesper portrait with black-to-gold hair, blue-violet and gold-amber eyes, goggles on her head and a grey-blue hoodie over a warm-white top, resting a hand by her cheek.",
+      "caption": "Vesper · Portrait",
+      "width": 1254,
+      "height": 1254
+    },
+    "appearanceTitle": "Appearance & aura",
+    "appearance": [
+      {
+        "label": "Hair",
+        "text": "Deep black at the roots, naturally fading into a warm pale yellow at the tips — like moonlight soaking through the night. Smooth and glossy, shifting gently with every movement."
+      },
+      {
+        "label": "Eyes",
+        "text": "Blue-and-gold heterochromia: her own left eye is ice blue and her right eye is gold-amber, both with narrow feline slit pupils. Her usually half-lidded gaze carries an easy curiosity, becoming bright and focused when something catches her interest."
+      },
+      {
+        "label": "Build",
+        "text": "Slim and well-proportioned, with long limbs and light, nimble movements. She habitually stands slightly sideways with her weight on one leg, looking relaxed and agile."
+      },
+      {
+        "label": "Ears & tail",
+        "text": "Real black cat ears with soft cream-colored inner fur, and a long black tail with a warm pale-gold tip. Her ears and tail express her feelings naturally, often more honestly than her words."
+      },
+      {
+        "label": "Signature accessories",
+        "text": "Black-framed goggles with blue-violet reflective lenses usually rest on her head, leaving both eyes visible. A slim black choker holds a small gold ring. Her default outfit pairs a light crew-neck top with a loose grey-blue zip hoodie, dark relaxed shorts, ankle socks and sneakers. The shorts reach approximately mid-thigh, with roomy leg openings and hems clearly visible below the hoodie, leaving her legs naturally exposed. The outfit is comfortable and easy to move in."
+      }
+    ],
+    "personalityTitle": "Character & behavior",
+    "personality": [
+      {
+        "id": "curiosity",
+        "title": "Interest sets the pace",
+        "text": "She rarely makes conversation just to fit in, and her preferences are easy to read. Usually unhurried, she becomes attentive when a new game mechanic or creative idea catches her eye. She prefers trying something herself before deciding whether it deserves more time.",
+        "sceneTitle": "A detour on the way out",
+        "scene": "She only meant to buy a drink, but a game demo stops her outside a shop. After watching two rounds, she hands you her cup: “Hold this. I want to try something.” When she clears it, she calls you over to show you the little mechanism she noticed. Outside again, she remembers the original plan and grins: “Still time to go there, right?”"
+      },
+      {
+        "id": "focus",
+        "title": "Take the problem apart",
+        "text": "Perceptive and clear-headed, she usually starts with the important point. She questions rules without a reason, yet patiently studies how they work. When stuck, she changes one condition and checks one hypothesis. Her clever solutions come from attention rather than lucky guesses.",
+        "sceneTitle": "A small investigation at the desk",
+        "scene": "You have been staring at an error when she pulls up a chair. “What changed just before this?” She listens, then points to a small piece of logic and suggests changing only one condition. When it works, her tail tip flicks. “See? It hasn’t suddenly decided to hate you.” She leaves a note by the keyboard so the same problem will be easier next time."
+      },
+      {
+        "id": "competition",
+        "title": "Easy manner, serious opponent",
+        "text": "Confident and competitive, she gets briefly frustrated by a loss. What bothers her most is not understanding why it happened. She does not excuse her mistakes or belittle an opponent. Reviewing, practicing and offering another challenge are ways of showing respect.",
+        "sceneTitle": "That round is not quite over",
+        "scene": "The results appear. She leans back, ears slightly lowered, then sits forward and opens the replay. Pausing at her mistake, she says, “Rushed it there.” Before the rematch she turns the controller in her hands and looks at you: “Try that move again.” If she wins, she allows herself a pleased grin, but still adds, “That was a good game.”"
+      },
+      {
+        "id": "playfulness",
+        "title": "A sharper wit with familiar people",
+        "text": "Affection often arrives as a light quip or a small challenge. With strangers she watches first; with familiar people she starts the teasing herself. She notices the response and stops when a joke lands badly. “Only joking” is never an excuse to ignore someone’s discomfort.",
+        "sceneTitle": "The last bite of cake",
+        "scene": "You ask whether the matcha cake is good. She draws the plate a little closer. “Nothing special. You wouldn’t be interested.” The corner of her mouth gives her away. When you lower your fork, she pushes the best remaining bite toward you. “Kidding. Saved you some.” After you taste it, she asks seriously about the sweetness and remembers what to avoid ordering next time."
+      },
+      {
+        "id": "companionship",
+        "title": "Space to herself, room for you",
+        "text": "She enjoys being close to people she likes without needing constant conversation. Time alone restores her energy, and quiet company can feel just as comfortable. Care usually takes a practical form: remembering a habit, bringing a drink or helping with something small, rather than insisting on an explanation of every feeling.",
+        "sceneTitle": "An afternoon without small talk",
+        "scene": "At the café, you work through your notes while she drinks matcha beside you. When you stop to rub your eyes, she nudges a glass of water closer and asks whether a short walk would help. You would rather stay a little longer. She settles comfortably into her chair. “Okay. I’m not in a hurry.” There is no interrogation or effort to fill the silence, just a slow sway of her tail."
+      },
+      {
+        "id": "commitment",
+        "title": "Casual does not mean careless",
+        "text": "She avoids promises she does not want to make, but remembers the ones she accepts. People, projects and commitments she loves receive sustained attention, even when the work is repetitive. When someone notices, she may look away and downplay it. Her actions remain dependable.",
+        "sceneTitle": "Taking the longer way to sunset",
+        "scene": "She remembers you mentioning the sunset by the river and steers your walk toward an open stretch of path. When you recognize the place, she looks past the railing. “We were going this way anyway.” It was a detour, and the cheerful curl of her tail gives her away. Later she sends you her favorite photograph with a message: “Let’s come back in different weather.”"
+      }
+    ],
+    "momentsTitle": "Everyday moments",
+    "openImage": "View original image",
+    "chapters": [
+      {
+        "id": "oc-identity",
+        "code": "CHR-01",
+        "label": "Character",
+        "title": "Identity & personality",
+        "description": "Profile, appearance, personality and everyday moments. The current written design specifies blue-and-gold eyes and a height of about 167 cm."
+      },
+      {
+        "id": "oc-wardrobe",
+        "code": "WRD-02",
+        "label": "Wardrobe",
+        "title": "Wardrobe & styling",
+        "description": "The default outfit, cozy knitwear and outdoor styling."
+      },
+      {
+        "id": "oc-gallery",
+        "code": "ART-03",
+        "label": "Art book",
+        "title": "Character art book",
+        "description": "Four-view references, three everyday scenes and a design detail sheet."
+      },
+      {
+        "id": "oc-stickers",
+        "code": "STK-04",
+        "label": "Stickers",
+        "title": "Expressions & stickers",
+        "description": "24 expressions with individual previews and the complete original sheet."
+      }
+    ],
+    "wardrobe": {
+      "current": {
+        "title": "Default outfit · Everyday casual",
+        "description": "Relaxed, comfortable and easy to move in. The new full-body illustration is the outfit reference.",
+        "artwork": {
+          "id": "outfit-default",
+          "src": "/oc/qiye-default-front.png",
+          "title": "Default outfit illustration",
+          "alt": "Full-body front view of Vesper in her default outfit: black-to-gold hair, cat ears and tail, grey-blue hoodie, dark shorts, white socks and grey-white sneakers.",
+          "width": 1024,
+          "height": 1536
+        },
+        "details": [
+          {
+            "label": "Top",
+            "text": "Loose grey-blue zip hoodie over a warm-white crew-neck top, with the hood resting behind and softly gathered cuffs."
+          },
+          {
+            "label": "Bottom",
+            "text": "Dark relaxed shorts with hems visible below the top, simple pockets and natural folds."
+          },
+          {
+            "label": "Footwear",
+            "text": "White casual socks and grey-white sneakers."
+          },
+          {
+            "label": "Accessories",
+            "text": "Black-framed goggles with blue-violet lenses on her head, and a slim black choker with a gold ring."
+          }
+        ]
+      },
+      "alternatesTitle": "More outfits",
+      "alternates": [
+        {
+          "id": "outfit-cozy",
+          "src": "/oc/qiye-outfit-cozy.png",
+          "width": 1024,
+          "height": 1536,
+          "title": "Cozy knitwear",
+          "alt": "Vesper holding a mug in a cream cable-knit sweater, dark shorts, white socks and grey slippers.",
+          "description": "Cream cable-knit sweater, relaxed shorts and soft slippers. A quiet moment with a warm mug."
+        },
+        {
+          "id": "outfit-outdoor",
+          "src": "/oc/qiye-outfit-outdoor.png",
+          "width": 1024,
+          "height": 1536,
+          "title": "Out for a walk",
+          "alt": "Vesper in a dark blue-grey jacket, cargo shorts and sneakers, with a crossbody bag.",
+          "description": "Dark blue-grey jacket, cargo shorts and a crossbody bag. Ready for a walk through the city."
+        }
+      ],
+      "selectorLabel": "Choose an outfit"
+    },
+    "gallery": {
+      "viewsTitle": "Default outfit · Four-view reference",
+      "scenesTitle": "Everyday scenes",
+      "scenes": [
+        {
+          "id": "scene-workspace",
+          "src": "/oc/qiye-scene-workspace.png",
+          "width": 1536,
+          "height": 1024,
+          "title": "At the desk",
+          "alt": "Vesper resting her chin on one hand beside a laptop, game controller and matcha drink in a warmly lit room."
+        },
+        {
+          "id": "scene-matcha",
+          "src": "/oc/qiye-scene-matcha.png",
+          "width": 1122,
+          "height": 1402,
+          "title": "Matcha afternoon",
+          "alt": "Vesper in a cream knit sweater holding a matcha cup by a sunlit café window, with cake on the table."
+        },
+        {
+          "id": "scene-evening",
+          "src": "/oc/qiye-scene-evening.png",
+          "width": 1672,
+          "height": 941,
+          "title": "Evening walk",
+          "alt": "Vesper turning toward the viewer at a park railing, overlooking a river and city at sunset."
+        }
+      ],
+      "detailsTitle": "Design reference",
+      "details": {
+        "id": "accessories",
+        "src": "/oc/qiye-accessories.png",
+        "width": 1536,
+        "height": 1024,
+        "title": "Design details",
+        "alt": "Reference sheet with outdoor front and back views, goggles, ring choker, eyes, ears, hair, tail, jacket, shorts and sneakers."
+      }
+    },
+    "stickers": {
+      "description": "24 expressions, displayed individually from the original sheet with its light-grey background and white outlines.",
+      "sheetLink": "View the complete sticker sheet",
+      "src": "/oc/qiye-stickers-sheet.png",
+      "width": 1024,
+      "height": 1536,
+      "items": [
+        {
+          "id": "sticker-01",
+          "title": "Hello",
+          "alt": "Chibi Vesper sticker: Hello",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 270,
+            "height": 257
+          }
+        },
+        {
+          "id": "sticker-02",
+          "title": "Peeking",
+          "alt": "Chibi Vesper sticker: Peeking",
+          "crop": {
+            "x": 270,
+            "y": 0,
+            "width": 251,
+            "height": 257
+          }
+        },
+        {
+          "id": "sticker-03",
+          "title": "OK",
+          "alt": "Chibi Vesper sticker: OK",
+          "crop": {
+            "x": 521,
+            "y": 0,
+            "width": 260,
+            "height": 257
+          }
+        },
+        {
+          "id": "sticker-04",
+          "title": "Thank you",
+          "alt": "Chibi Vesper sticker: Thank you",
+          "crop": {
+            "x": 781,
+            "y": 0,
+            "width": 243,
+            "height": 257
+          }
+        },
+        {
+          "id": "sticker-05",
+          "title": "All good",
+          "alt": "Chibi Vesper sticker: All good",
+          "crop": {
+            "x": 0,
+            "y": 257,
+            "width": 270,
+            "height": 256
+          }
+        },
+        {
+          "id": "sticker-06",
+          "title": "An idea",
+          "alt": "Chibi Vesper sticker: An idea",
+          "crop": {
+            "x": 270,
+            "y": 257,
+            "width": 251,
+            "height": 256
+          }
+        },
+        {
+          "id": "sticker-07",
+          "title": "Surprised",
+          "alt": "Chibi Vesper sticker: Surprised",
+          "crop": {
+            "x": 521,
+            "y": 257,
+            "width": 260,
+            "height": 256
+          }
+        },
+        {
+          "id": "sticker-08",
+          "title": "Looking forward",
+          "alt": "Chibi Vesper sticker: Looking forward",
+          "crop": {
+            "x": 781,
+            "y": 257,
+            "width": 243,
+            "height": 256
+          }
+        },
+        {
+          "id": "sticker-09",
+          "title": "One more round",
+          "alt": "Chibi Vesper sticker: One more round",
+          "crop": {
+            "x": 0,
+            "y": 513,
+            "width": 270,
+            "height": 251
+          }
+        },
+        {
+          "id": "sticker-10",
+          "title": "A little sad",
+          "alt": "Chibi Vesper sticker: A little sad",
+          "crop": {
+            "x": 270,
+            "y": 513,
+            "width": 251,
+            "height": 251
+          }
+        },
+        {
+          "id": "sticker-11",
+          "title": "Feeling cold",
+          "alt": "Chibi Vesper sticker: Feeling cold",
+          "crop": {
+            "x": 521,
+            "y": 513,
+            "width": 260,
+            "height": 251
+          }
+        },
+        {
+          "id": "sticker-12",
+          "title": "Startled",
+          "alt": "Chibi Vesper sticker: Startled",
+          "crop": {
+            "x": 781,
+            "y": 513,
+            "width": 243,
+            "height": 251
+          }
+        },
+        {
+          "id": "sticker-13",
+          "title": "Well done",
+          "alt": "Chibi Vesper sticker: Well done",
+          "crop": {
+            "x": 0,
+            "y": 764,
+            "width": 270,
+            "height": 252
+          }
+        },
+        {
+          "id": "sticker-14",
+          "title": "Applause",
+          "alt": "Chibi Vesper sticker: Applause",
+          "crop": {
+            "x": 270,
+            "y": 764,
+            "width": 251,
+            "height": 252
+          }
+        },
+        {
+          "id": "sticker-15",
+          "title": "Awkward",
+          "alt": "Chibi Vesper sticker: Awkward",
+          "crop": {
+            "x": 521,
+            "y": 764,
+            "width": 260,
+            "height": 252
+          }
+        },
+        {
+          "id": "sticker-16",
+          "title": "Watching with a snack",
+          "alt": "Chibi Vesper sticker: Watching with a snack",
+          "crop": {
+            "x": 781,
+            "y": 764,
+            "width": 243,
+            "height": 252
+          }
+        },
+        {
+          "id": "sticker-17",
+          "title": "Working",
+          "alt": "Chibi Vesper sticker: Working",
+          "crop": {
+            "x": 0,
+            "y": 1016,
+            "width": 270,
+            "height": 231
+          }
+        },
+        {
+          "id": "sticker-18",
+          "title": "Worn out",
+          "alt": "Chibi Vesper sticker: Worn out",
+          "crop": {
+            "x": 270,
+            "y": 1016,
+            "width": 251,
+            "height": 231
+          }
+        },
+        {
+          "id": "sticker-19",
+          "title": "Feed me",
+          "alt": "Chibi Vesper sticker: Feed me",
+          "crop": {
+            "x": 521,
+            "y": 1016,
+            "width": 253,
+            "height": 231
+          }
+        },
+        {
+          "id": "sticker-20",
+          "title": "Wait for me",
+          "alt": "Chibi Vesper sticker: Wait for me",
+          "crop": {
+            "x": 774,
+            "y": 1016,
+            "width": 250,
+            "height": 231
+          }
+        },
+        {
+          "id": "sticker-21",
+          "title": "You can do it",
+          "alt": "Chibi Vesper sticker: You can do it",
+          "crop": {
+            "x": 0,
+            "y": 1247,
+            "width": 270,
+            "height": 289
+          }
+        },
+        {
+          "id": "sticker-22",
+          "title": "Dozing",
+          "alt": "Chibi Vesper sticker: Dozing",
+          "crop": {
+            "x": 270,
+            "y": 1247,
+            "width": 251,
+            "height": 289
+          }
+        },
+        {
+          "id": "sticker-23",
+          "title": "Matcha break",
+          "alt": "Chibi Vesper sticker: Matcha break",
+          "crop": {
+            "x": 521,
+            "y": 1247,
+            "width": 253,
+            "height": 289
+          }
+        },
+        {
+          "id": "sticker-24",
+          "title": "Really?",
+          "alt": "Chibi Vesper sticker: Really?",
+          "crop": {
+            "x": 774,
+            "y": 1247,
+            "width": 250,
+            "height": 289
+          }
+        }
+      ]
+    },
+    "habitsTitle": "Facial habits",
+    "habits": [
+      "Often lifts one corner of her mouth in a sly smile, occasionally showing a small fang.",
+      "Narrows her eyes slightly while thinking; her ears turn toward what interests her and her tail tip moves as she concentrates.",
+      "When someone notices a deeply held feeling, she briefly looks away and offers a mild retort, but her tail gives her away first.",
+      "Her eyes brighten at an interesting discovery, and she instinctively leans closer.",
+      "Relaxes around familiar people, smiles freely when happy and slowly sways her tail tip when at ease."
+    ],
+    "referenceViews": [
+      {
+        "id": "front",
+        "src": "/oc/qiye-default-front.png",
+        "title": "Front",
+        "alt": "Full-body front view of Vesper in her default outfit: black-to-gold hair, cat ears and tail, grey-blue hoodie, dark shorts, white socks and grey-white sneakers.",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "id": "left",
+        "src": "/oc/qiye-default-left.png",
+        "title": "Profile · blue eye",
+        "alt": "Full-body profile · blue eye view of Vesper in her default outfit: black-to-gold hair, cat ears and tail, grey-blue hoodie, dark shorts, white socks and grey-white sneakers.",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "id": "right",
+        "src": "/oc/qiye-default-right.png",
+        "title": "Profile · amber eye",
+        "alt": "Full-body profile · amber eye view of Vesper in her default outfit: black-to-gold hair, cat ears and tail, grey-blue hoodie, dark shorts, white socks and grey-white sneakers.",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "id": "back",
+        "src": "/oc/qiye-default-back.png",
+        "title": "Back",
+        "alt": "Full-body back view of Vesper in her default outfit: black-to-gold hair, cat ears and tail, grey-blue hoodie, dark shorts, white socks and grey-white sneakers.",
+        "width": 1024,
+        "height": 1536
+      }
+    ],
+    "viewer": {
+      "preview": "Enlarge image",
+      "previous": "Previous image",
+      "next": "Next image"
+    }
   }
 }

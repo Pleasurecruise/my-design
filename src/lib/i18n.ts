@@ -8,17 +8,24 @@ import { pageMetadata, pagePath, resolvePage } from "./metadata";
 import type { Locale } from "./metadata";
 export type { Locale } from "./metadata";
 const key = "my-design:locale";
-const initialPage =
-  typeof window === "undefined"
-    ? undefined
-    : resolvePage(window.location.pathname, window.location.search);
+const initialPage = resolvePage(window.location.pathname, window.location.search);
+let savedLocale: string | null = null;
+try {
+  savedLocale = window.localStorage.getItem(key);
+} catch (error) {
+  if (!(error instanceof DOMException && error.name === "SecurityError")) throw error;
+}
+const systemLanguage = window.navigator.languages.find((language) =>
+  /^(en|zh)(-|$)/i.test(language),
+);
 let locale: Locale =
-  initialPage?.locale === "zh" ||
-  (typeof window !== "undefined" &&
-    window.location.pathname === "/" &&
-    window.localStorage.getItem(key) === "zh")
+  initialPage.locale === "zh"
     ? "zh"
-    : "en";
+    : savedLocale === "en" || savedLocale === "zh"
+      ? savedLocale
+      : systemLanguage?.toLowerCase().startsWith("zh")
+        ? "zh"
+        : "en";
 const listeners = new Set<() => void>();
 function subscribe(listener: () => void) {
   listeners.add(listener);
@@ -27,16 +34,25 @@ function subscribe(listener: () => void) {
   };
 }
 export function setLocale(next: Locale) {
-  window.localStorage.setItem(key, next);
   locale = next;
+  try {
+    window.localStorage.setItem(key, next);
+  } catch (error) {
+    if (
+      !(
+        error instanceof DOMException &&
+        (error.name === "SecurityError" || error.name === "QuotaExceededError")
+      )
+    )
+      throw error;
+  }
   syncLocaleMetadata();
   listeners.forEach((listener) => listener());
 }
 export function syncLocaleMetadata() {
-  if (typeof document === "undefined") return;
   document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
-  const { documentId } = resolvePage(location.pathname, location.search);
-  const page = pageMetadata(locale, documentId);
+  const { documentId, section } = resolvePage(location.pathname, location.search);
+  const page = pageMetadata(locale, documentId, section);
   const canonical = document.querySelector('link[rel="canonical"]');
   const base = canonical?.getAttribute("href") ?? location.origin;
   const url = new URL(page.path, base).href;
@@ -62,11 +78,11 @@ export function syncLocaleMetadata() {
   for (const language of ["en", "zh"] satisfies Locale[]) {
     document
       .querySelector(`link[hreflang="${language === "zh" ? "zh-CN" : "en"}"]`)
-      ?.setAttribute("href", new URL(pagePath(language, documentId), base).href);
+      ?.setAttribute("href", new URL(pagePath(language, documentId, section), base).href);
   }
   document
     .querySelector('link[hreflang="x-default"]')
-    ?.setAttribute("href", new URL(pagePath("en", documentId), base).href);
+    ?.setAttribute("href", new URL(pagePath("en", documentId, section), base).href);
   const address = new URL(location.href);
   address.pathname = page.path;
   address.searchParams.delete("document");

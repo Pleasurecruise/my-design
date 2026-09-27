@@ -29,7 +29,7 @@ export default defineConfig({
         handler: (html, context) => {
           const url = new URL(context.originalUrl ?? context.path, "https://local.invalid");
           const page = resolvePage(url.pathname, url.search);
-          return renderMetadata(html, page.locale, page.documentId);
+          return renderMetadata(html, page.locale, page.documentId, page.section);
         },
       },
       generateBundle: {
@@ -43,7 +43,7 @@ export default defineConfig({
             this.emitFile({
               type: "asset",
               fileName: `${page.path.slice(1)}index.html`,
-              source: renderMetadata(index.source, page.locale, page.documentId),
+              source: renderMetadata(index.source, page.locale, page.documentId, page.section),
             });
           }
         },

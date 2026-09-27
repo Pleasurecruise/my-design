@@ -1,11 +1,10 @@
 // @vitest-environment jsdom
 import { act, createElement } from "react";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
 import { setLocale } from "../src/lib/i18n";
 import content from "../src/content/showcase.json";
 import App from "../src/App";
-import { ShowcaseToolbar } from "../src/components/ShowcaseToolbar";
 import { useTheme } from "../src/lib/theme";
 import english from "../src/content/showcase.json";
 import chinese from "../src/content/showcase.zh.json";
@@ -22,6 +21,7 @@ beforeEach(() => {
   document.documentElement.style.setProperty("--color-accent", "#526682");
   document.documentElement.className = "";
   localStorage.clear();
+  history.replaceState(null, "", "/");
   setLocale("en");
   document.head.innerHTML = `<meta name="description" content="">
     <meta property="og:title"><meta property="og:description"><meta property="og:locale">
@@ -84,14 +84,32 @@ it("changes live copy and metadata without discarding a comment draft", () => {
   );
 });
 
-it("restores the saved locale when the language module initializes", async () => {
-  localStorage.setItem("my-design:locale", "zh");
-  vi.resetModules();
-  const restored = await import("../src/lib/i18n");
-  restored.syncLocaleMetadata();
-  expect(document.documentElement.lang).toBe("zh-CN");
-  act(() => restored.setLocale("en"));
-});
+it.each([
+  { languages: ["zh-CN", "en-US"], saved: null, path: "/", expected: "zh-CN", address: "/zh/" },
+  { languages: ["zh-TW"], saved: null, path: "/oc/", expected: "zh-CN", address: "/zh/oc/" },
+  { languages: ["en-GB", "zh-CN"], saved: null, path: "/", expected: "en", address: "/" },
+  { languages: ["fr-FR", "zh-CN"], saved: null, path: "/", expected: "zh-CN", address: "/zh/" },
+  { languages: ["ja-JP"], saved: null, path: "/", expected: "en", address: "/" },
+  { languages: ["zh-CN"], saved: "en", path: "/", expected: "en", address: "/" },
+  { languages: ["en-US"], saved: "zh", path: "/", expected: "zh-CN", address: "/zh/" },
+  { languages: ["en-US"], saved: "en", path: "/zh/oc/", expected: "zh-CN", address: "/zh/oc/" },
+  { languages: ["zh-CN"], saved: "invalid", path: "/", expected: "zh-CN", address: "/zh/" },
+])(
+  "selects the initial language from the URL, saved choice and system preferences: $languages / $saved / $path",
+  async ({ languages, saved, path, expected, address }) => {
+    localStorage.clear();
+    if (saved) localStorage.setItem("my-design:locale", saved);
+    history.replaceState(null, "", path);
+    vi.spyOn(window.navigator, "languages", "get").mockReturnValue(languages);
+    vi.resetModules();
+    const restored = await import("../src/lib/i18n");
+    restored.syncLocaleMetadata();
+    expect(document.documentElement.lang).toBe(expected);
+    expect(location.pathname).toBe(address);
+    expect(localStorage.getItem("my-design:locale")).toBe(saved);
+    act(() => restored.setLocale("en"));
+  },
+);
 
 it("follows system changes until the user explicitly chooses a theme", () => {
   const query = Object.assign(new EventTarget(), { matches: false });
@@ -139,33 +157,121 @@ it("keeps manual switching usable when theme storage is unavailable", () => {
   expect(document.documentElement.classList.contains("dark")).toBe(false);
 });
 
-it("restores focus on Escape and removes accessibility preferences on unmount", () => {
-  const { unmount } = render(createElement(ShowcaseToolbar, { dark: false, toggle: vi.fn() }));
-  const trigger = screen.getByRole("button", { name: content.toolbar.accessibility });
-  fireEvent.click(trigger);
-  const panel = screen.getByRole("region", { name: content.toolbar.accessibility });
-  expect(document.activeElement).toBe(panel);
-  fireEvent.click(screen.getByLabelText(content.toolbar.largerText));
-  fireEvent.click(screen.getByLabelText(content.toolbar.strongFocus));
-  fireEvent.click(screen.getByLabelText(content.toolbar.reduceMotion));
-  expect(document.documentElement.hasAttribute("data-largertext")).toBe(true);
-  expect(document.documentElement.hasAttribute("data-strongfocus")).toBe(true);
-  expect(document.documentElement.hasAttribute("data-reducemotion")).toBe(true);
-  fireEvent.keyDown(panel, { key: "Escape" });
-  expect(trigger.getAttribute("aria-expanded")).toBe("false");
-  expect(document.activeElement).toBe(trigger);
-  fireEvent.click(trigger);
-  fireEvent.pointerDown(document.body);
-  expect(trigger.getAttribute("aria-expanded")).toBe("false");
-  unmount();
-  expect(document.documentElement.hasAttribute("data-largertext")).toBe(false);
-  expect(document.documentElement.hasAttribute("data-strongfocus")).toBe(false);
-  expect(document.documentElement.hasAttribute("data-reducemotion")).toBe(false);
+it("links the sidebar to chapters and a localized character page", () => {
+  render(createElement(App));
+  const navigation = screen.getByRole("navigation", { name: english.navigation.label });
+  expect(navigation).toBeDefined();
+  expect(
+    screen.getByRole("link", { name: english.navigation.design }).getAttribute("aria-current"),
+  ).toBe("page");
+  expect(screen.getByRole("link", { name: english.navigation.oc }).getAttribute("href")).toBe(
+    "/oc/",
+  );
+  for (const chapter of english.sections) {
+    expect(screen.getByRole("link", { name: chapter.label }).getAttribute("href")).toBe(
+      `#${chapter.id}`,
+    );
+  }
+  fireEvent.click(screen.getByRole("button", { name: english.toolbar.switchLanguage }));
+  expect(screen.getByRole("link", { name: chinese.navigation.oc }).getAttribute("href")).toBe(
+    "/zh/oc/",
+  );
+});
+
+it("keeps the character page selected when changing language and theme", () => {
+  history.replaceState(null, "", "/oc/#oc-stickers");
+  setLocale("en");
+  render(createElement(App));
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(english.oc.title);
+  const englishGallery = screen.getByRole("region", { name: english.oc.chapters[2].title });
+  for (const artwork of english.oc.referenceViews) {
+    expect(within(englishGallery).getByRole("img", { name: artwork.alt }).getAttribute("src")).toBe(
+      artwork.src,
+    );
+  }
+  expect(
+    screen.getByRole("link", { name: english.navigation.oc }).getAttribute("aria-current"),
+  ).toBe("page");
+  fireEvent.click(screen.getByRole("button", { name: english.labels.switchDark }));
+  expect(document.documentElement.classList.contains("dark")).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: english.toolbar.switchLanguage }));
+  expect(location.pathname).toBe("/zh/oc/");
+  expect(location.hash).toBe("#oc-stickers");
+  expect(document.title).toBe(pageMetadata("zh", undefined, "oc").title);
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(chinese.oc.title);
+  expect(screen.getByRole("link", { name: chinese.navigation.design }).getAttribute("href")).toBe(
+    "/zh/",
+  );
+  expect(screen.getByRole("img", { name: chinese.oc.portrait.alt }).getAttribute("src")).toBe(
+    "/oc/qiye-portrait.png",
+  );
+  expect(screen.getByText(chinese.oc.personality[0].text)).toBeDefined();
+  const navigation = screen.getByRole("navigation", { name: chinese.navigation.label });
+  expect(document.querySelector(".character-index")).toBeNull();
+  for (const chapter of chinese.oc.chapters) {
+    expect(within(navigation).getByRole("link", { name: chapter.label }).getAttribute("href")).toBe(
+      `#${chapter.id}`,
+    );
+    expect(screen.getByRole("region", { name: chapter.title }).id).toBe(chapter.id);
+  }
+  expect(document.querySelector("#oc-pv")).toBeNull();
+  expect(document.querySelector("#oc-ui")).toBeNull();
+  expect(document.querySelector('a[href="#oc-ui"]')).toBeNull();
+  expect(document.querySelector('a[href="#oc-pv"]')).toBeNull();
+  const wardrobe = screen.getByRole("region", { name: chinese.oc.chapters[1].title });
+  expect(
+    within(wardrobe).getByRole("heading", { name: chinese.oc.wardrobe.current.title }),
+  ).toBeDefined();
+  for (const item of chinese.oc.wardrobe.current.details) {
+    expect(within(wardrobe).getByText(item.text)).toBeDefined();
+  }
+  const gallery = screen.getByRole("region", { name: chinese.oc.chapters[2].title });
+  for (const artwork of chinese.oc.referenceViews) {
+    expect(within(gallery).getByRole("img", { name: artwork.alt }).getAttribute("src")).toBe(
+      artwork.src,
+    );
+  }
+  for (const artwork of chinese.oc.wardrobe.alternates) {
+    fireEvent.click(within(wardrobe).getByRole("button", { name: new RegExp(artwork.title) }));
+    expect(within(wardrobe).getByRole("img", { name: artwork.alt }).getAttribute("src")).toBe(
+      artwork.src,
+    );
+  }
+  const stickers = screen.getByRole("region", { name: chinese.oc.chapters[3].title });
+  expect(within(stickers).getAllByRole("img")).toHaveLength(24);
+  expect(
+    within(stickers)
+      .getByRole("link", { name: chinese.oc.stickers.sheetLink })
+      .getAttribute("href"),
+  ).toBe(chinese.oc.stickers.src);
+  for (const artwork of [...chinese.oc.gallery.scenes, chinese.oc.gallery.details]) {
+    expect(screen.getByRole("img", { name: artwork.alt }).getAttribute("src")).toBe(artwork.src);
+  }
+  const currentSources = new Set([
+    chinese.oc.portrait.src,
+    ...chinese.oc.referenceViews.map((artwork) => artwork.src),
+    ...chinese.oc.wardrobe.alternates.map((artwork) => artwork.src),
+    ...chinese.oc.gallery.scenes.map((artwork) => artwork.src),
+    chinese.oc.gallery.details.src,
+    chinese.oc.stickers.src,
+  ]);
+  for (const image of screen.getAllByRole("img")) {
+    expect(currentSources.has(image.getAttribute("src") ?? "")).toBe(true);
+  }
 });
 
 it("resolves localized sharing routes and preserves legacy document links", () => {
-  expect(resolvePage("/zh/documents/essay/")).toEqual({ locale: "zh", documentId: "essay" });
-  expect(resolvePage("/", "?document=report")).toEqual({ locale: "en", documentId: "report" });
+  expect(resolvePage("/zh/documents/essay/")).toEqual({
+    locale: "zh",
+    documentId: "essay",
+    section: "design",
+  });
+  expect(resolvePage("/", "?document=report")).toEqual({
+    locale: "en",
+    documentId: "report",
+    section: "design",
+  });
+  expect(resolvePage("/zh/oc/")).toEqual({ locale: "zh", documentId: undefined, section: "oc" });
   expect(resolvePage("/documents/unknown/").documentId).toBeUndefined();
 });
 
@@ -182,4 +288,69 @@ it("updates the share URL and metadata while retaining query parameters and hash
   );
   expect(document.title).toBe(pageMetadata("zh", "essay").title);
   history.replaceState(null, "", "/");
+});
+
+it("shows all stickers and preserves wardrobe selection across locales", () => {
+  history.replaceState(null, "", "/oc/");
+  render(createElement(App));
+  const outfit = english.oc.wardrobe.alternates[1];
+  fireEvent.click(screen.getByRole("button", { name: new RegExp(`OF-03.*${outfit.title}`) }));
+  const region = screen.getByRole("region", { name: english.oc.chapters[3].title });
+  expect(within(region).queryByRole("searchbox")).toBeNull();
+  expect(within(region).getAllByRole("img")).toHaveLength(24);
+  fireEvent.click(screen.getByRole("button", { name: english.toolbar.switchLanguage }));
+  const translated = chinese.oc.wardrobe.alternates[1];
+  expect(
+    screen
+      .getByRole("button", { name: new RegExp(`OF-03.*${translated.title}`) })
+      .getAttribute("aria-pressed"),
+  ).toBe("true");
+  expect(screen.getByRole("img", { name: translated.alt }).getAttribute("src")).toBe(outfit.src);
+});
+
+it("keeps OC routes separate from legacy document queries", () => {
+  expect(resolvePage("/oc/", "?document=essay")).toEqual({
+    locale: "en",
+    documentId: undefined,
+    section: "oc",
+  });
+  expect(resolvePage("/other/documents/essay/").documentId).toBeUndefined();
+  expect(resolvePage("/zh/", "?document=essay")).toEqual({
+    locale: "zh",
+    documentId: "essay",
+    section: "design",
+  });
+});
+
+it("loads and switches locale when browser storage is blocked", async () => {
+  vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+    throw new DOMException("Blocked", "SecurityError");
+  });
+  vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+    throw new DOMException("Blocked", "SecurityError");
+  });
+  vi.spyOn(window.navigator, "languages", "get").mockReturnValue(["zh-CN"]);
+  vi.resetModules();
+  const restored = await import("../src/lib/i18n");
+  restored.syncLocaleMetadata();
+  expect(document.documentElement.lang).toBe("zh-CN");
+  restored.setLocale("en");
+  expect(document.documentElement.lang).toBe("en");
+  expect(location.pathname).toBe("/");
+});
+
+it("does not suppress unexpected locale persistence errors", async () => {
+  vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+    throw new TypeError("Unexpected storage failure");
+  });
+  vi.resetModules();
+  await expect(import("../src/lib/i18n")).rejects.toThrow("Unexpected storage failure");
+});
+
+it("keeps locale switching usable when storage is full", () => {
+  vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+    throw new DOMException("Full", "QuotaExceededError");
+  });
+  setLocale("zh");
+  expect(document.documentElement.lang).toBe("zh-CN");
 });

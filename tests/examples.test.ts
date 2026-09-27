@@ -96,12 +96,12 @@ it("downloads a Markdown file and releases its temporary URL after the click", (
   const createObjectURL = vi.fn(() => "blob:conversation");
   const revokeObjectURL = vi.fn();
   vi.stubGlobal("URL", { createObjectURL, revokeObjectURL });
-  const click = vi
-    .spyOn(HTMLAnchorElement.prototype, "click")
-    .mockImplementation(function (this: HTMLAnchorElement) {
-      expect(this.download).toBe("conversation.md");
-      expect(this.href).toBe("blob:conversation");
-    });
+  const click = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (
+    this: HTMLAnchorElement,
+  ) {
+    expect(this.download).toBe("conversation.md");
+    expect(this.href).toBe("blob:conversation");
+  });
   downloadText("## A thought\n\nKeep this.", "conversation.md");
   expect(click).toHaveBeenCalledOnce();
   expect(createObjectURL).toHaveBeenCalledWith(

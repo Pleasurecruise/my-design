@@ -1,6 +1,8 @@
 @import "./palette.css";
 
 :root {
+  --color-artwork-paper: var(--palette-artwork-paper);
+  --color-sticker-field: var(--palette-sticker-field);
   --color-background: var(--palette-light-silver);
   --color-muted: var(--palette-light-cloud);
   --color-foreground: var(--palette-light-ink);

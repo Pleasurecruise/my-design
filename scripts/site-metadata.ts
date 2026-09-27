@@ -1,6 +1,6 @@
 import content from "../src/content/showcase.json" with { type: "json" };
 import { pageMetadata, pagePath } from "../src/lib/metadata.ts";
-import type { Locale } from "../src/lib/metadata.ts";
+import type { Locale, SiteSection } from "../src/lib/metadata.ts";
 import { readFileSync } from "node:fs";
 
 export const siteUrl = `https://${readFileSync(new URL("../public/CNAME", import.meta.url), "utf8").trim()}/`;
@@ -29,8 +29,13 @@ export function themeColor(dark = false) {
   return value;
 }
 
-export function renderMetadata(html: string, locale: Locale, documentId?: string) {
-  const page = pageMetadata(locale, documentId);
+export function renderMetadata(
+  html: string,
+  locale: Locale,
+  documentId?: string,
+  section: SiteSection = "design",
+) {
+  const page = pageMetadata(locale, documentId, section);
   const url = new URL(page.path, siteUrl).href;
   const image = new URL(page.imagePath, siteUrl).href;
   const tags = [
@@ -38,9 +43,9 @@ export function renderMetadata(html: string, locale: Locale, documentId?: string
     `<link rel="canonical" href="${escapeHtml(url)}" />`,
     ...(["en", "zh"] satisfies Locale[]).map(
       (language) =>
-        `<link rel="alternate" hreflang="${language === "zh" ? "zh-CN" : "en"}" href="${new URL(pagePath(language, page.documentId), siteUrl).href}" />`,
+        `<link rel="alternate" hreflang="${language === "zh" ? "zh-CN" : "en"}" href="${new URL(pagePath(language, page.documentId, section), siteUrl).href}" />`,
     ),
-    `<link rel="alternate" hreflang="x-default" href="${new URL(pagePath("en", page.documentId), siteUrl).href}" />`,
+    `<link rel="alternate" hreflang="x-default" href="${new URL(pagePath("en", page.documentId, section), siteUrl).href}" />`,
     ...Object.entries({
       description: page.description,
       "application-name": page.siteName,
