@@ -8,6 +8,8 @@ import english from "../src/content/showcase.json";
 import chinese from "../src/content/showcase.zh.json";
 import englishDocuments from "../src/content/documents.json";
 import chineseDocuments from "../src/content/documents.zh.json";
+import englishLoading from "../src/content/loading.json";
+import chineseLoading from "../src/content/loading.zh.json";
 import { sharingPages, pageMetadata } from "../src/lib/metadata";
 
 const tokens = await readFile("src/styles/tokens.css", "utf8");
@@ -46,7 +48,30 @@ it("ships crawler-readable metadata and valid linked image assets without JavaSc
   }
   const html = result.output.find((file) => file.fileName === "index.html");
   assert.ok(html && html.type === "asset" && typeof html.source === "string");
-  expect(html.source).not.toMatch(/%[A-Z_]+%|__THEME_KEY__/);
+  expect(html.source).not.toMatch(/%[A-Z_]+%|__THEME_KEY__|__LOADING_HOST__/);
+  for (const hostname of [
+    "l0ad.ing",
+    "design.you-find.me",
+    "localhost",
+    "example.pages.dev",
+    "l0ad.ing.example.com",
+  ]) {
+    const bootstrap = new JSDOM(html.source, {
+      url: `https://${hostname}/`,
+      runScripts: "dangerously",
+      beforeParse(window) {
+        Object.defineProperty(window, "matchMedia", { value: () => ({ matches: false }) });
+        window.localStorage.setItem(english.site.themeKey, "light");
+      },
+    });
+    expect(bootstrap.window.document.documentElement.classList.contains("loading-domain")).toBe(
+      hostname === "l0ad.ing",
+    );
+    expect(
+      bootstrap.window.document.querySelector('meta[name="theme-color"]')?.getAttribute("content"),
+    ).toBe(hostname === "l0ad.ing" ? "#000000" : "#f7f6f2");
+    bootstrap.window.close();
+  }
   const dom = new JSDOM(html.source);
   const head = dom.window.document.head;
   const metadata = (selector: string) => head.querySelector(selector)?.getAttribute("content");
@@ -128,6 +153,7 @@ function shape(value: unknown): unknown {
 it("keeps both locale structures and navigation identities aligned", () => {
   expect(shape(chinese)).toEqual(shape(english));
   expect(shape(chineseDocuments)).toEqual(shape(englishDocuments));
+  expect(shape(chineseLoading)).toEqual(shape(englishLoading));
   expect(chinese.sections.map((section) => section.id)).toEqual(
     english.sections.map((section) => section.id),
   );

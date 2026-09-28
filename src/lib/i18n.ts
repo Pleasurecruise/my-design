@@ -5,27 +5,11 @@ import englishDocuments from "../content/documents.json";
 import chineseDocuments from "../content/documents.zh.json";
 
 import { pageMetadata, pagePath, resolvePage } from "./metadata";
-import type { Locale } from "./metadata";
-export type { Locale } from "./metadata";
-const key = "my-design:locale";
-const initialPage = resolvePage(window.location.pathname, window.location.search);
-let savedLocale: string | null = null;
-try {
-  savedLocale = window.localStorage.getItem(key);
-} catch (error) {
-  if (!(error instanceof DOMException && error.name === "SecurityError")) throw error;
-}
-const systemLanguage = window.navigator.languages.find((language) =>
-  /^(en|zh)(-|$)/i.test(language),
-);
-let locale: Locale =
-  initialPage.locale === "zh"
-    ? "zh"
-    : savedLocale === "en" || savedLocale === "zh"
-      ? savedLocale
-      : systemLanguage?.toLowerCase().startsWith("zh")
-        ? "zh"
-        : "en";
+import { getInitialLocale, localeKey } from "./locale";
+import type { Locale } from "./locale";
+export type { Locale } from "./locale";
+
+let locale = getInitialLocale();
 const listeners = new Set<() => void>();
 function subscribe(listener: () => void) {
   listeners.add(listener);
@@ -36,7 +20,7 @@ function subscribe(listener: () => void) {
 export function setLocale(next: Locale) {
   locale = next;
   try {
-    window.localStorage.setItem(key, next);
+    window.localStorage.setItem(localeKey, next);
   } catch (error) {
     if (
       !(

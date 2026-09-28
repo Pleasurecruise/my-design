@@ -1,0 +1,12 @@
+@import "./tokens.css";
+
+html.loading-domain {
+  color-scheme: dark;
+  background: var(--color-loading-background);
+  color: var(--color-loading-foreground);
+}
+
+.loading-domain body {
+  margin: 0;
+  background: var(--color-loading-background);
+}

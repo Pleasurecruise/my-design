@@ -9,6 +9,7 @@
 ## Scope and implementation
 
 - Make restrained changes to the requested area. Preserve unrelated work.
+- Use Conventional Commits: `type(scope): description`, with an optional scope, for example `feat: add loading-domain entry` or `ci: validate commit messages`. The `commit-ci` workflow checks push and pull-request commits using commitlint's conventional configuration.
 - Use TypeScript and the existing Vite+ toolchain. Do not add `.mjs` or `.cjs` files or a second formatter, linter or build system.
 - Use the pnpm version pinned in `package.json` and `pnpm-lock.yaml`; do not introduce other package-manager lockfiles.
 - Pin direct dependencies to exact versions and update the lockfile together. Do not add dependency overrides or hardcode a host in development and preview scripts. Keep only dependencies with an actual application, testing or tooling use.

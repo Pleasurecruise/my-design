@@ -1,0 +1,174 @@
+.loading-landing {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-loading-background);
+  color: var(--color-loading-foreground);
+}
+
+.loading-link {
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  color: inherit;
+  border-radius: var(--radius-sm);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.loading-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.loading-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.loading-animation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+}
+
+.loading-ring {
+  animation: loading-ring-spin 1s linear infinite;
+}
+
+.loading-dots,
+.loading-bouncing-dots {
+  gap: 12%;
+}
+
+.loading-dots > span,
+.loading-bouncing-dots > span {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  animation: loading-dots-blink 1.4s infinite both;
+}
+
+.loading-bouncing-dots > span {
+  animation: loading-bouncing-dots 1.4s ease-in-out infinite;
+}
+
+.loading-bars {
+  gap: 5%;
+}
+
+.loading-bars > span {
+  flex: 1;
+  height: 100%;
+  border-radius: var(--radius-xs);
+  background: currentColor;
+  animation: loading-bars 1.2s ease-in-out infinite;
+}
+
+.loading-wave {
+  gap: 2.5%;
+}
+
+.loading-wave > span {
+  width: 12.5%;
+  height: 50%;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  animation: loading-wave 1s ease-in-out infinite;
+}
+
+.loading-wave > span:nth-child(2),
+.loading-wave > span:nth-child(4) {
+  height: 75%;
+}
+
+.loading-wave > span:nth-child(3) {
+  height: 100%;
+}
+
+.loading-pulse > span {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-full);
+  animation: loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dots-blink {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-bouncing-dots {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-bars {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.6);
+  }
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-animation,
+  .loading-animation > span {
+    animation: none;
+  }
+}

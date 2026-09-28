@@ -1,6 +1,7 @@
 import content from "../src/content/showcase.json" with { type: "json" };
 import { pageMetadata, pagePath } from "../src/lib/metadata.ts";
 import type { Locale, SiteSection } from "../src/lib/metadata.ts";
+import { loadingHost } from "../src/lib/loading.ts";
 import { readFileSync } from "node:fs";
 
 export const siteUrl = `https://${readFileSync(new URL("../public/CNAME", import.meta.url), "utf8").trim()}/`;
@@ -12,12 +13,14 @@ export const escapeHtml = (text: string) =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
-// Browser chrome uses the interface background in each theme.
 const palette = readFileSync(new URL("../src/styles/palette.css", import.meta.url), "utf8");
 const tokens = readFileSync(new URL("../src/styles/tokens.css", import.meta.url), "utf8");
-export function themeColor(dark = false) {
-  const block = tokens.match(dark ? /\.dark\s*\{([^}]+)\}/ : /:root\s*\{([^}]+)\}/)?.[1];
-  const name = block?.match(/--color-background:\s*var\((--palette-[\w-]+)\)/)?.[1];
+function themeColor(theme: "light" | "dark" | "loading" = "light") {
+  const block = tokens.match(
+    theme === "dark" ? /\.dark\s*\{([^}]+)\}/ : /:root\s*\{([^}]+)\}/,
+  )?.[1];
+  const token = theme === "loading" ? "--color-loading-background" : "--color-background";
+  const name = block?.match(new RegExp(`${token}:\\s*var\\((--palette-[\\w-]+)\\)`))?.[1];
   const values = new Map(
     [...palette.matchAll(/(--palette-[\w-]+):\s*(#[\da-f]{6})/gi)].map(([, name, value]) => [
       name,
@@ -25,7 +28,7 @@ export function themeColor(dark = false) {
     ]),
   );
   const value = name && values.get(name);
-  if (!value) throw new Error(`Missing ${dark ? "dark" : "light"} background color`);
+  if (!value) throw new Error(`Missing ${theme} background color`);
   return value;
 }
 
@@ -77,7 +80,9 @@ export function renderMetadata(
       `<!-- site-metadata:start -->\n${tags.join("\n")}\n<!-- site-metadata:end -->`,
     )
     .replaceAll("%THEME_LIGHT%", themeColor())
-    .replaceAll("%THEME_DARK%", themeColor(true))
+    .replaceAll("%LOADING_BACKGROUND%", themeColor("loading"))
+    .replaceAll("__LOADING_HOST__", loadingHost)
+    .replaceAll("%THEME_DARK%", themeColor("dark"))
     .replace(
       /(['"])__THEME_KEY__\1/,
       JSON.stringify(content.site.themeKey).replaceAll("<", "\\u003c"),

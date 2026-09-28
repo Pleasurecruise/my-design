@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vp dev",
     "check": "vp check",
-    "build": "pnpm run og && pnpm run check && pnpm test && vp build",
+    "build": "pnpm run check && pnpm test && vp build",
     "preview": "vp preview",
     "format": "vp fmt",
     "format:check": "vp fmt --check",

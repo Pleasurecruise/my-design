@@ -3,7 +3,8 @@ import chinese from "../content/showcase.zh.json" with { type: "json" };
 import englishDocuments from "../content/documents.json" with { type: "json" };
 import chineseDocuments from "../content/documents.zh.json" with { type: "json" };
 
-export type Locale = "en" | "zh";
+import type { Locale } from "./locale";
+export type { Locale } from "./locale";
 export type SiteSection = "design" | "oc";
 
 export function pagePath(locale: Locale, documentId?: string, section: SiteSection = "design") {

@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { act, createElement } from "react";
+import { act, createElement, StrictMode } from "react";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vite-plus/test";
 import { setLocale } from "../src/lib/i18n";
@@ -10,6 +10,9 @@ import english from "../src/content/showcase.json";
 import chinese from "../src/content/showcase.zh.json";
 import documents from "../src/content/documents.zh.json";
 import { pageMetadata, resolvePage } from "../src/lib/metadata";
+import LoadingLanding from "../src/components/LoadingLanding";
+import englishLoading from "../src/content/loading.json";
+import chineseLoading from "../src/content/loading.zh.json";
 
 function ThemeControl() {
   const { dark, toggle } = useTheme();
@@ -37,6 +40,86 @@ afterEach(() => {
   vi.unstubAllGlobals();
   setLocale("en");
 });
+
+it("shows a localized loading status and redirects only once under StrictMode", () => {
+  const replace = vi.fn();
+  vi.stubGlobal("location", {
+    href: window.location.href,
+    pathname: window.location.pathname,
+    search: window.location.search,
+    replace,
+  });
+  render(createElement(StrictMode, null, createElement(LoadingLanding)));
+  expect(screen.getByRole("status").textContent).toBe(englishLoading.status);
+  expect(screen.getByRole("link", { name: englishLoading.continue }).getAttribute("href")).toBe(
+    "https://design.you-find.me/zh/oc/",
+  );
+  expect(document.title).toBe("l0ad.ing");
+  act(() => {
+    vi.advanceTimersByTime(1799);
+  });
+  expect(replace).not.toHaveBeenCalled();
+  act(() => {
+    vi.advanceTimersByTime(1);
+  });
+  expect(replace).toHaveBeenCalledExactlyOnceWith("https://design.you-find.me/zh/oc/");
+});
+
+it("cancels the loading redirect when the page unmounts", () => {
+  const replace = vi.fn();
+  vi.stubGlobal("location", {
+    href: window.location.href,
+    pathname: window.location.pathname,
+    search: window.location.search,
+    replace,
+  });
+  const view = render(createElement(LoadingLanding));
+  view.unmount();
+  act(() => {
+    vi.advanceTimersByTime(2000);
+  });
+  expect(replace).not.toHaveBeenCalled();
+});
+
+it("shortens the intro for reduced motion and keeps the Chinese status accessible", () => {
+  setLocale("zh");
+  const replace = vi.fn();
+  vi.stubGlobal("location", {
+    href: window.location.href,
+    pathname: window.location.pathname,
+    search: window.location.search,
+    replace,
+  });
+  vi.stubGlobal("matchMedia", () => ({ matches: true }));
+  render(createElement(LoadingLanding));
+  expect(screen.getByRole("status").textContent).toBe(chineseLoading.status);
+  expect(screen.getByRole("link", { name: chineseLoading.continue })).toBeDefined();
+  expect(document.documentElement.lang).toBe("zh-CN");
+  act(() => {
+    vi.advanceTimersByTime(199);
+  });
+  expect(replace).not.toHaveBeenCalled();
+  act(() => {
+    vi.advanceTimersByTime(1);
+  });
+  expect(replace).toHaveBeenCalledExactlyOnceWith("https://design.you-find.me/zh/oc/");
+});
+
+it.each(["ring", "dots", "bars", "wave", "pulse", "bouncing-dots"])(
+  "can select %s and keeps the same animation through rerenders",
+  (kind) => {
+    const kinds = ["ring", "dots", "bars", "wave", "pulse", "bouncing-dots"];
+    const random = vi
+      .spyOn(Math, "random")
+      .mockReturnValue((kinds.indexOf(kind) + 0.5) / kinds.length);
+    const view = render(createElement(LoadingLanding));
+    const animation = view.container.querySelector(`.loading-${kind}`);
+    expect(animation).not.toBeNull();
+    random.mockReturnValue(0.99);
+    view.rerender(createElement(LoadingLanding));
+    expect(view.container.querySelector(`.loading-${kind}`)).toBe(animation);
+  },
+);
 
 it("changes live copy and metadata without discarding a comment draft", () => {
   render(createElement(App));
@@ -102,6 +185,13 @@ it.each([
     history.replaceState(null, "", path);
     vi.spyOn(window.navigator, "languages", "get").mockReturnValue(languages);
     vi.resetModules();
+    const landing = render(createElement(LoadingLanding));
+    expect(document.documentElement.lang).toBe(expected);
+    expect(screen.getByRole("status").textContent).toBe(
+      expected === "zh-CN" ? chineseLoading.status : englishLoading.status,
+    );
+    expect(location.pathname).toBe(path);
+    landing.unmount();
     const restored = await import("../src/lib/i18n");
     restored.syncLocaleMetadata();
     expect(document.documentElement.lang).toBe(expected);

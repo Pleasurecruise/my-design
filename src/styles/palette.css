@@ -1,4 +1,6 @@
 :root {
+  --palette-black: #000000;
+  --palette-white: #ffffff;
   --palette-light-silver: #f7f6f2;
   --palette-light-cloud: #e9ebef;
   --palette-light-edge: #d6dae1;

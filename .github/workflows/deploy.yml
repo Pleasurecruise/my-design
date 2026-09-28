@@ -24,8 +24,6 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Install Open Graph renderer
-        run: pnpm exec playwright install --with-deps chromium
       - name: Check, test and build
         run: pnpm run build
       - uses: actions/upload-pages-artifact@v4

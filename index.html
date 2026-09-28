@@ -12,6 +12,11 @@
     <meta name="theme-color" content="%THEME_LIGHT%" />
     <script>
       (() => {
+        if (location.hostname === "__LOADING_HOST__") {
+          document.documentElement.classList.add("loading-domain");
+          document.querySelector('meta[name="theme-color"]').content = "%LOADING_BACKGROUND%";
+          return;
+        }
         let dark = matchMedia("(prefers-color-scheme: dark)").matches;
         try {
           const saved = localStorage.getItem("__THEME_KEY__");
